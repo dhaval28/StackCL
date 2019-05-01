@@ -1,0 +1,3 @@
+1. Using Material Icons
+2. Routing (Guards, Authentication, JWT)
+3. Improved solution for Mongo Connection
