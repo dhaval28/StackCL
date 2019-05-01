@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-
+import { CommonService } from './../services/common-service';
+import { CommonConstants } from '../common-constants';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +19,7 @@ export class SigninComponent implements OnInit {
   });
   public submitted = false;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -31,7 +32,9 @@ export class SigninComponent implements OnInit {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value))
+    this.commonService.getData(CommonConstants.testGetService).subscribe((response) => {
+      console.log("working");
+    });
   }
 
 }

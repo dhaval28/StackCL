@@ -13,9 +13,6 @@ export class LoginPageComponent implements OnInit {
   constructor(public commonService: CommonService) { }
 
   ngOnInit() {
-    this.commonService.getData(CommonConstants.testGetService).subscribe((response) => {
-      console.log("working");
-    });
   }
 
   onClickSignUp() {
