@@ -1,0 +1,11 @@
+<form>
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="Username or Email" autocomplete="off">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" autocomplete="off">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
+  </mat-form-field>
+  <br>
+</form>

@@ -1,0 +1,31 @@
+.bg {
+    min-height: 100vh;
+    background-image: url('./../../assets/login-page-bg.jpg');
+    text-align: -webkit-center;
+}
+
+.login-card {
+    margin: 20px;
+    width: 70vw;
+    height: 85vh;
+    overflow: hidden;
+}
+  
+.login-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.signin-form, .signup-form {
+    margin-top: 20%;
+}
+
+.vertical-divider {
+    float: left;
+    width: 2px;
+    min-height: 100%;
+}
+
+.login-logo-half {
+    border-left: 2px solid black;
+}

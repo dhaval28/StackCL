@@ -1,0 +1,25 @@
+<form>
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="First Name" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="Last Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enter your email" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" required autocomplete="off">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
+  </mat-form-field>
+  <br>
+  <mat-checkbox [(ngModel)]="termsAccepted" name="termsAccepted">I accept the <a href="#">Terms & Conditions</a>*</mat-checkbox>
+  <br>
+  <mat-card-actions>
+    <button [disabled]="!termsAccepted" mat-button style="background-color: blue; color: white;">Sign Up!</button>
+  </mat-card-actions>
+</form>
