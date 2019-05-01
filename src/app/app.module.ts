@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponentComponent } from './test-component/test-component.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { CommonService } from './services/common-service';
@@ -14,7 +14,7 @@ import { CommonService } from './services/common-service';
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponentComponent,
+    LoginPageComponent,
     SigninComponent,
     SignupComponent
   ],

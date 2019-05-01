@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from './../services/common-service';
-import { CommonConstants } from './../common-constants';
+import { CommonService } from '../services/common-service';
+import { CommonConstants } from '../common-constants';
 
 @Component({
-  selector: 'app-test-component',
-  templateUrl: './test-component.component.html',
-  styleUrls: ['./test-component.component.css']
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.css']
 })
-export class TestComponentComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
 
   public isSignIn: boolean = true;
   constructor(public commonService: CommonService) { }
