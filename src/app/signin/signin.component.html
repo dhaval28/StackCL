@@ -1,11 +1,17 @@
-<form>
+<form name="signin-form">
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Username or Email" autocomplete="off">
+    <input type="text" matInput placeholder="Username or Email" [formControl]="username" autocomplete="off" required>
+    <mat-error *ngIf="username.invalid">Required</mat-error>
   </mat-form-field>
-  <br>
+  <br><br>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" autocomplete="off">
+    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" autocomplete="off"
+      required>
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
+    <mat-error *ngIf="passwd.invalid">Required</mat-error>
   </mat-form-field>
+  <mat-card-actions>
+    <button mat-button (click)="onClickSignIn()" style="border: 1px solid blue;">Sign In</button>
+  </mat-card-actions>
   <br>
 </form>
