@@ -10,6 +10,10 @@
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
     <mat-error *ngIf="passwd.invalid">Required</mat-error>
   </mat-form-field>
+  <br>
+  <div>
+    <a href="#">Forgot Password?</a>
+  </div>
   <mat-card-actions>
     <button mat-button (click)="onClickSignIn()" style="border: 1px solid blue;">Sign In</button>
   </mat-card-actions>
