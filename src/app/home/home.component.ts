@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { DataService } from './../services/data-share.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,8 @@ import { ActivatedRoute } from "@angular/router";
 export class HomeComponent implements OnInit {
 
   public userData: any;
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      console.log(params);
-      this.userData = params; // --> Name must match wanted parameter
-    });
+  constructor(public _dataService: DataService) {
+    this.userData = _dataService.getJSON();  
   }
 
   ngOnInit() {

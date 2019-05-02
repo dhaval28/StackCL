@@ -12,6 +12,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 
 import { CommonService } from './services/common-service';
+import { DataService } from './services/data-share.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { CommonService } from './services/common-service';
     HttpClientModule,
     MaterialModule,
   ],
-  providers: [CommonService],
+  providers: [CommonService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

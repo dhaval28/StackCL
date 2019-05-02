@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from './../services/common-service';
+import { DataService } from './../services/data-share.service';
 import { CommonConstants } from '../common-constants';
 import { Router } from '@angular/router';
 
@@ -21,7 +22,7 @@ export class SigninComponent implements OnInit {
   });
   public submitted = false;
 
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router) { }
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -36,7 +37,8 @@ export class SigninComponent implements OnInit {
 
     this.commonService.setData(CommonConstants.loginURL, this.signInForm.value).subscribe((response) => {
       if (response) {
-        this.router.navigate(['/home', response], { skipLocationChange: true });
+        this._dataService.setJSON(response);
+        this.router.navigate(['/home']);
       }
       else {
         alert("Invalid Credentials");
