@@ -12,20 +12,22 @@ MongoClient.connect(URI, { useNewUrlParser: true })
     })
     .then(async client => {
         connection = client;
-        _db = connection.db("sample_airbnb");
+        _db = connection.db("stack_cl");
     })
 
 
-stackclDAO.test = async (req, res) => {
-    collection = _db.collection("listingsAndReviews");
-    await collection.find({ name: "Ribeira Charming Duplex" }).toArray()
-        .then(result => {
-            console.log(result);
-            res.json(result);
-        })
-        .catch(err => {
+stackclDAO.login = async (req, res) => {
+    collection = _db.collection("user_info");
+
+    await collection.findOne(({ $and: [{ $or: [{ emailId: req.body.username }, { userName: req.body.username }]}, { password: req.body.passwd }]}), function (err, result) {
+        if (err)
             res.status(500).json(err);
-        });
+        if (result) {
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    });
 
 };
 

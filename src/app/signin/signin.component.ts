@@ -32,8 +32,13 @@ export class SigninComponent implements OnInit {
       return;
     }
 
-    this.commonService.getData(CommonConstants.testGetService).subscribe((response) => {
-      console.log("working");
+    this.commonService.setData(CommonConstants.loginService, this.signInForm.value).subscribe((response) => {
+      if (response) {
+        alert("Login Success!");
+      }
+      else {
+        alert("Invalid Credentials");
+      }
     });
   }
 
