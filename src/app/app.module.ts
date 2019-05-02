@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+
 import { CommonService } from './services/common-service';
 
 @NgModule({
@@ -16,7 +18,8 @@ import { CommonService } from './services/common-service';
     AppComponent,
     LoginPageComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

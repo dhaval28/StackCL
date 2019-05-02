@@ -1,15 +1,15 @@
 <form name="signup-form">
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="First Name" [formControl]="fname" required>
+    <input type="text" matInput placeholder="First Name" [formControl]="fname" required autocomplete="off">
     <mat-error *ngIf="fname.invalid">Required</mat-error>
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Last Name">
+    <input type="text" matInput placeholder="Last Name" autocomplete="off">
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" [formControl]="email" required>
+    <input matInput placeholder="Email" [formControl]="email" required autocomplete="off">
     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <br>
@@ -19,9 +19,9 @@
     <mat-error *ngIf="passwd.invalid">Required</mat-error>
   </mat-form-field>
   <br>
-  <mat-checkbox [(ngModel)]="termsAccepted" name="termsAccepted">I accept the <a href="#">Terms & Conditions</a>*</mat-checkbox>
+  <mat-checkbox [(ngModel)]="termsAccepted" name="termsAccepted">I accept the <a routerLink="">Terms & Conditions</a>*</mat-checkbox>
   <br>
   <mat-card-actions>
-    <button [disabled]="!termsAccepted" mat-button style="border: 1px solid blue;">Sign Up!</button>
+    <button [disabled]="!termsAccepted" mat-button style="border: 1px solid blue;" (click)="onClickSignUp()">Sign Up!</button>
   </mat-card-actions>
 </form>

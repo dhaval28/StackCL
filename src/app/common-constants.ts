@@ -1,3 +1,4 @@
 export const CommonConstants = {
-    loginService: 'http://localhost:5000/login',
+    loginURL: 'http://localhost:5000/login',
+    signupURL: 'http://localhost:5000/signup'
 };

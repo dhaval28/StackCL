@@ -23,12 +23,25 @@ stackclDAO.login = async (req, res) => {
         if (err)
             res.status(500).json(err);
         if (result) {
-            res.json(true);
+            res.json({ firstName: result.firstName, lastName: result.lastName });
         } else {
-            res.json(false);
+            res.json(null);
         }
     });
+};
 
+stackclDAO.signup = async (req, res) => {
+    collection = _db.collection("user_info");
+
+    await collection.insertOne(req.body, function (err, result) {
+        if (err)
+            res.status(500).json(err);
+        if (result) {
+            console.log(result);
+            res.json(result);
+        } else {
+        }
+    });
 };
 
 module.exports = stackclDAO;
