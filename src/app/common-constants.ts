@@ -1,4 +1,6 @@
+let hostName = window.location.host;
+
 export const CommonConstants = {
-    loginURL: 'http://localhost:5000/login',
-    signupURL: 'http://localhost:5000/signup'
+    loginURL: hostName+'/login',
+    signupURL: hostName+'/signup'
 };
