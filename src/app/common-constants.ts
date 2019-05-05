@@ -4,5 +4,6 @@ if (window.location.host === "localhost:4200") {
 }
 export const CommonConstants = {
     loginURL: hostName + '/login',
-    signupURL: hostName + '/signup'
+    signupURL: hostName + '/signup',
+    feedbackURL: hostName + '/feedback'
 };

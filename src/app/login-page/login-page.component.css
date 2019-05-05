@@ -37,7 +37,8 @@
 
 .support-card {
     width: 320px;
-    height: auto;
+    height: 380px;
+    max-height: 380px;
     padding: 10px;
 	position: fixed;
 	bottom: 20px;
@@ -51,4 +52,10 @@
 }
 .support-tabs-content {
     font-size: 15px;
+    text-align: left;
+}
+
+.comment-full-width {
+    width: 100%;
+    min-width: 250px;
 }

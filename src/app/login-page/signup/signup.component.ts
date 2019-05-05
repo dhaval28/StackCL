@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
-import { CommonService } from '../services/common-service';
-import { CommonConstants } from '../common-constants';
+import { CommonService } from './../../services/common-service';
+import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 
 

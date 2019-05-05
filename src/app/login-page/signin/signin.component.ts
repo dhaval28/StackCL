@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { CommonService } from './../services/common-service';
-import { DataService } from './../services/data-share.service';
-import { CommonConstants } from '../common-constants';
+import { CommonService } from './../../services/common-service';
+import { DataService } from './../../services/data-share.service';
+import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 
 

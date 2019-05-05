@@ -31,7 +31,7 @@
     </mat-card-content>
   </mat-card>
 
-  <!-- Contact Us Section -->
+  <!--Support Section -->
   <div *ngIf="!showSupport">
     <button mat-button class="support-button" (click)="onClickSupport()">X | A</button>
   </div>
@@ -58,23 +58,29 @@
     <div class="row support-tabs-content">
       <div *ngIf="contactOrFeedback === 'contact-us-tab'" class="col-md-12">
         <p>
-          Email ID: rockstar9999@gmail.com
-          Phone No.: +91 99999 99999
+          Email ID: support@stackcl.com
         </p>
         <p>
-          Copyright &#169; ABCDXYZ Developers
+          Phone No.: +91 99999 99999
+        </p>
+        <p style="bottom: 10px; position: fixed;">
+          Copyright &#169; STACK CL Developers
         </p>
       </div>
       <div *ngIf="contactOrFeedback !== 'contact-us-tab'" class="col-md-12">
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
+        <form>
+          <mat-form-field class="comment-full-width">
+            <textarea matInput placeholder="Leave a comment" [formControl]="commentInput" required></textarea>
+          </mat-form-field>
+          <p>
+            Rating:
+          </p>
+          <app-rating (ratingClick)="getRating($event)"></app-rating>
+        </form>
       </div>
     </div>
     <mat-card-actions *ngIf="contactOrFeedback === 'feedback-tab'">
-      <button mat-button>SUBMIT</button>
+      <button mat-button (click)="onClickFeedbackSubmit()">SUBMIT</button>
     </mat-card-actions>
   </mat-card>
 

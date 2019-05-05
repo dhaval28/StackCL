@@ -19,7 +19,7 @@ MongoClient.connect(URI, { useNewUrlParser: true })
 stackclDAO.login = async (req, res) => {
     collection = _db.collection("user_info");
 
-    await collection.findOne(({ $and: [{ $or: [{ emailId: req.body.username }, { userName: req.body.username }]}, { password: req.body.passwd }]}), function (err, result) {
+    await collection.findOne(({ $and: [{ $or: [{ emailId: req.body.username }, { userName: req.body.username }] }, { password: req.body.passwd }] }), function (err, result) {
         if (err)
             res.status(500).json(err);
         if (result) {
@@ -39,7 +39,22 @@ stackclDAO.signup = async (req, res) => {
         if (result) {
             console.log(result);
             res.json(result);
-        } else {
+        }
+        else {
+        }
+    });
+};
+stackclDAO.feedback = async (req, res) => {
+    collection = _db.collection("feedback_response");
+
+    await collection.insertOne(req.body, function (err, result) {
+        if (err)
+            res.status(500).json(err);
+        if (result) {
+            console.log(result);
+            res.json(result);
+        }
+        else {
         }
     });
 };

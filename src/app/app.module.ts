@@ -7,8 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './login-page/signin/signin.component';
+import { SignupComponent } from './login-page/signup/signup.component';
+import { RatingComponent } from './login-page/rating/rating.component';
 import { HomeComponent } from './home/home.component';
 
 import { CommonService } from './services/common-service';
@@ -19,7 +20,7 @@ import { DataService } from './services/data-share.service';
     AppComponent,
     LoginPageComponent,
     SigninComponent,
-    SignupComponent,
+    SignupComponent, RatingComponent,
     HomeComponent
   ],
   imports: [

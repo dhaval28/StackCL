@@ -1,0 +1,3 @@
+To use [(ngModel)] in data-driven (Reactive forms), using [name] attribute on the input element is required.
+Else use FormBuilder and pass the form data
+
