@@ -1,9 +1,8 @@
-// let hostName = "";
-// if(window.location.host ==="localhost"){
-//   hostName = window.location.host;
-// }else{
-//   hostName = "";
+let hostName = "";
+if (window.location.host === "localhost:4200") {
+    hostName = "http://localhost:5000";
+}
 export const CommonConstants = {
-    loginURL: '/login',
-    signupURL: '/signup'
+    loginURL: hostName + '/login',
+    signupURL: hostName + '/signup'
 };

@@ -23,3 +23,32 @@
 .login-logo-half {
     border-left: 2px solid black;
 }
+
+.support-button {
+	padding: 10px;
+	background: #000;
+	font-weight: bold;
+	color: #eee;
+	position: fixed;
+	bottom: 20px;
+    right: 20px;
+    border-radius: 50%; 
+}
+
+.support-card {
+    width: 320px;
+    height: auto;
+    padding: 10px;
+	position: fixed;
+	bottom: 20px;
+    right: 20px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.support-tabs-header {
+    cursor: pointer;
+}
+.support-tabs-content {
+    font-size: 15px;
+}

@@ -9,6 +9,8 @@ import { CommonService } from '../services/common-service';
 export class LoginPageComponent implements OnInit {
 
   public isSignIn: boolean = true;
+  public contactOrFeedback: string = "contact-us-tab";
+  public showSupport: boolean = true;
   constructor(public commonService: CommonService) { }
 
   ngOnInit() {
@@ -16,6 +18,15 @@ export class LoginPageComponent implements OnInit {
 
   onClickSignUp() {
     this.isSignIn = false;
+  }
+
+  onClickSupport() {
+    this.showSupport = !this.showSupport;
+  }
+
+  contactOrFeedbackChange(e) {
+    this.contactOrFeedback = e.target.id;
+    console.log(e);
   }
 
 }

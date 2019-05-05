@@ -30,4 +30,52 @@
       </div>
     </mat-card-content>
   </mat-card>
+
+  <!-- Contact Us Section -->
+  <div *ngIf="!showSupport">
+    <button mat-button class="support-button" (click)="onClickSupport()">X | A</button>
+  </div>
+
+  <mat-card class="example-card support-card" *ngIf="showSupport">
+    <div class="row">
+      <div class="col-md-5">
+        <span id="contact-us-tab" class="support-tabs-header" (click)="contactOrFeedbackChange($event)" [ngStyle]="{
+          'color': contactOrFeedback === 'contact-us-tab' ? 'blue' : 'black',
+          'font-weight': contactOrFeedback === 'contact-us-tab' ? 'bold' : 'normal'
+        }">Contact Us</span>
+      </div>
+      <div class="col-md-5">
+        <span id="feedback-tab" class="support-tabs-header" (click)="contactOrFeedbackChange($event)" [ngStyle]="{
+          'color': contactOrFeedback === 'feedback-tab' ? 'blue' : 'black',
+          'font-weight': contactOrFeedback === 'feedback-tab' ? 'bold' : 'normal'
+        }">Feedback</span>
+      </div>
+      <div class="col-md-2">
+        <span class="support-tabs-header" (click)="onClickSupport()">O</span>
+      </div>
+    </div>
+    <hr size="2" color="black">
+    <div class="row support-tabs-content">
+      <div *ngIf="contactOrFeedback === 'contact-us-tab'" class="col-md-12">
+        <p>
+          Email ID: rockstar9999@gmail.com
+          Phone No.: +91 99999 99999
+        </p>
+        <p>
+          Copyright &#169; ABCDXYZ Developers
+        </p>
+      </div>
+      <div *ngIf="contactOrFeedback !== 'contact-us-tab'" class="col-md-12">
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </div>
+    </div>
+    <mat-card-actions *ngIf="contactOrFeedback === 'feedback-tab'">
+      <button mat-button>SUBMIT</button>
+    </mat-card-actions>
+  </mat-card>
+
 </div>
