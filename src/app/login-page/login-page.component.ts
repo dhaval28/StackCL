@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common-service';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login-page',
