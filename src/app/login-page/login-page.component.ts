@@ -2,12 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonConstants } from './../common-constants';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  animations: [
+    trigger('slideInAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('0.3s', style({ transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('fadeInAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.3s', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class LoginPageComponent implements OnInit {
 
