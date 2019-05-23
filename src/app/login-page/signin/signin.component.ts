@@ -4,6 +4,7 @@ import { CommonService } from './../../services/common-service';
 import { DataService } from './../../services/data-share.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
+import { validatePassword } from './../validations/validations';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   public username = new FormControl('', [Validators.required]);
-  public passwd = new FormControl('', [Validators.required]);
+  public passwd = new FormControl('', [Validators.required, validatePassword]);
 
   public signInForm: FormGroup = this.formBuilder.group({
     username: this.username,
