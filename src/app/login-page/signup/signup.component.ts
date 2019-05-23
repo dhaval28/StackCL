@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from './../../services/common-service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
+import { validatePassword } from './../validations/validations';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit {
 
   public email = new FormControl('', [Validators.required, Validators.email]);
   public fname = new FormControl('', [Validators.required]);
-  public passwd = new FormControl('', [Validators.required]);
+  public passwd = new FormControl('', [Validators.required, validatePassword]);
 
   public signUpForm: FormGroup = this.formBuilder.group({
     firstName: this.fname,
