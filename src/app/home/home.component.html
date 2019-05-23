@@ -12,16 +12,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul>
-                        <li>
+                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 0">
                             Dashboard
                         </li>
-                        <li>
+                        <li (click)="sidePanelSelection = 1">
                             Q&A Section
                         </li>
-                        <li>
+                        <li (click)="sidePanelSelection = 2">
                             Discussion Section
                         </li>
-                        <li>
+                        <li (click)="sidePanelSelection = 3">
                             Admin Controller
                         </li>
                     </ul>
@@ -29,7 +29,10 @@
             </div>
         </div>
         <div class="col-md-10">
-            <h1 style="color: white;">Main Content</h1>
+            <app-dashboard *ngIf="sidePanelSelection == 0"></app-dashboard>
+            <app-qa-section *ngIf="sidePanelSelection == 1"></app-qa-section>
+            <app-discussion-section *ngIf="sidePanelSelection == 2"></app-discussion-section>
+            <app-admin-controller *ngIf="sidePanelSelection == 3"></app-admin-controller>
         </div>
     </div>
 </div>
