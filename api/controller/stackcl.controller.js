@@ -13,4 +13,9 @@ stackclController.signup = (req, res) => {
 stackclController.feedback = (req, res) => {
 	stackclDAO.feedback(req, res);
 }
+
+stackclController.dbInfo = (req, res) => {
+	stackclDAO.dbInfo(req, res);
+}
+
 module.exports = stackclController;
