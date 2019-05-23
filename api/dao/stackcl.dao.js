@@ -23,7 +23,7 @@ stackclDAO.login = async (req, res) => {
         if (err)
             res.status(500).json(err);
         if (result) {
-            res.json({ firstName: result.firstName, lastName: result.lastName });
+            res.json(result);
         } else {
             res.json(null);
         }
