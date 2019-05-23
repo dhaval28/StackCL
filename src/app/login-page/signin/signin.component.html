@@ -8,7 +8,8 @@
     <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" autocomplete="off"
       required>
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
-    <mat-error *ngIf="passwd.invalid">Required</mat-error>
+    <mat-error *ngIf="passwd.errors?.required">Required</mat-error>
+    <mat-error *ngIf="passwd.invalid && passwd.errors?.invalidPass">Should be at least 8 characters long</mat-error>
   </mat-form-field>
   <br>
   <div>
