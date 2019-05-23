@@ -9,6 +9,8 @@ import { DataService } from './../services/data-share.service';
 export class HomeComponent implements OnInit {
 
   public userData: any;
+  public sidePanelSelection: number = 0;
+
   constructor(public _dataService: DataService) {
     this.userData = _dataService.getJSON();  
   }
