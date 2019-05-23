@@ -11,7 +11,10 @@ import { SigninComponent } from './login-page/signin/signin.component';
 import { SignupComponent } from './login-page/signup/signup.component';
 import { RatingComponent } from './login-page/rating/rating.component';
 import { HomeComponent } from './home/home.component';
-
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { DiscussionSectionComponent } from './home/discussion-section/discussion-section.component';
+import { QASectionComponent } from './home/qa-section/qa-section.component';
+import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
 import { CommonService } from './services/common-service';
 import { DataService } from './services/data-share.service';
 
@@ -19,7 +22,7 @@ import { DataService } from './services/data-share.service';
   declarations: [
     AppComponent,
     LoginPageComponent,
-    SigninComponent,
+    SigninComponent, DashboardComponent, DiscussionSectionComponent, QASectionComponent, AdminControllerComponent,
     SignupComponent, RatingComponent,
     HomeComponent
   ],
