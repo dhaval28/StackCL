@@ -1,0 +1,17 @@
+#sidePanelDiv {
+    height: -webkit-fill-available;
+    background-color: black;
+    color: white;
+}
+
+#profileSection {
+    height: 150px;
+}
+
+#profilePicture {
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+}
