@@ -4,3 +4,4 @@
 4. Side panel mat-sidepanel
 5. mat-table for admin controller
 6. Improved solution for Mongo Connection
+7. Remove top nav-bar
