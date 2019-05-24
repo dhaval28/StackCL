@@ -1,3 +1,6 @@
 1. Using Material Icons
 2. Routing (Guards, Authentication, JWT)
-3. Improved solution for Mongo Connection
+3. Encrypted Requests and Response (Hash)
+4. Side panel mat-sidepanel
+5. mat-table for admin controller
+6. Improved solution for Mongo Connection
