@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul>
-                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 0">
+                        <li (click)="sidePanelSelection = 0">
                             Dashboard
                         </li>
                         <li (click)="sidePanelSelection = 1">
@@ -21,7 +21,7 @@
                         <li (click)="sidePanelSelection = 2">
                             Discussion Section
                         </li>
-                        <li (click)="sidePanelSelection = 3">
+                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 3">
                             Admin Controller
                         </li>
                     </ul>
