@@ -1,15 +1,18 @@
 let express = require("express");
 let cors = require("cors");
+require('./api/db/mongoose');
 let bodyParser = require('body-parser');
-let Routes = require('./api/routes/stackcl.routes');
+let adminRoutes = require('./api/routes/admin.routes');
+let userRoutes = require('./api/routes/user.routes');
+
 let app = express();
 let port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(Routes);
-
+app.use(adminRoutes);
+app.use(userRoutes);
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
