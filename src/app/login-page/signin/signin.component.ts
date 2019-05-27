@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
 
     this.commonService.setData(CommonConstants.loginURL, this.signInForm.value).subscribe((response) => {
       if (response) {
-        this._dataService.setJSON(response);
+        this._dataService.setJSON(response[0]);
         this.router.navigate(['/home']);
       }
       else {

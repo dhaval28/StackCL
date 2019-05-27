@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   public sidePanelSelection: number = 0;
 
   constructor(public _dataService: DataService) {
-    this.userData = _dataService.getJSON();  
+    this.userData = _dataService.getJSON();
   }
 
   ngOnInit() {
