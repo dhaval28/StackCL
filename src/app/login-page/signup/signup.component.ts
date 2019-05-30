@@ -37,13 +37,11 @@ export class SignupComponent implements OnInit {
     }
 
     this.commonService.setData(CommonConstants.signupURL, this.signUpForm.value).subscribe((response) => {
-      if (response) {
-        alert("Account Created Successfully");
-      }
-      else {
+      alert("Account Created Successfully");
+    },
+      err => {
         alert("Something went wrong!");
-      }
-    });
+      });
   }
 
   getErrorMessage() {

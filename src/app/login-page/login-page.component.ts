@@ -68,15 +68,13 @@ export class LoginPageComponent implements OnInit {
     }
 
     this.commonService.setData(CommonConstants.feedbackURL, this.feedbackForm.value).subscribe((response) => {
-      if (response) {
-        alert("Your response has been recorded. Thanks!!!!");
-      }
-      else {
-        alert("Oops Something went Wrong!!!!");
-      }
+      alert("Your response has been recorded. Thanks!!!!");
       this.showSupport = false;
       this.feedbackForm.reset();
-    });
+    },
+      err => {
+        alert("Oops Something went Wrong!!!!");
+      });
   }
 
 }
