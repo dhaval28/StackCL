@@ -30,13 +30,24 @@ const userSchema = new mongoose.Schema({
     }]
 });
 
-//generating token -- using .methods to define function on schema
+//generating token -- using .methods to define function on instance
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
     const token = jwt.sign({ _id: user._id.toString() }, 'stackclsecret', { expiresIn: '1d' });
     user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;
+}
+
+//Hiding some data while sending profile info -- using .methods to define function on instance
+userSchema.methods.getPublicProfile = function () {
+    const user = this;
+    let userObj = user.toObject();
+
+    delete userObj.password;
+    delete userObj.tokens;
+    console.log(userObj);
+    return userObj;
 }
 
 //Login User -- using .statics to define model functions
@@ -49,6 +60,7 @@ userSchema.statics.findByCredentials = async (req) => {
 
     const isMatch = await bcrypt.compare(req.body.passwd, user.password);
     if (!isMatch) {
+        console.log("Incorrect password");
         throw new Error('Unable to login!');
     }
 
@@ -60,7 +72,7 @@ userSchema.pre('save', async function (next) {
     // 'this' contains the document to be stored
     const user = this;
 
-    if (user.isModified()) {
+    if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
     next();

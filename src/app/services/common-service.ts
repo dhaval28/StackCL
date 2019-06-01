@@ -20,4 +20,8 @@ export class CommonService {
     setData(url, body): Observable<any> {
         return this.http.post(url, body, this.httpOptions);
     }
+
+    deleteData(url): Observable<any> {
+        return this.http.delete(url, this.httpOptions);
+    }
 }

@@ -4,6 +4,7 @@ import { CommonService } from './../../services/common-service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword } from './../validations/validations';
+import { DataService } from './../../services/data-share.service';
 
 
 @Component({
@@ -15,17 +16,18 @@ export class SignupComponent implements OnInit {
 
   public email = new FormControl('', [Validators.required, Validators.email]);
   public fname = new FormControl('', [Validators.required]);
+  public lname = new FormControl('');
   public passwd = new FormControl('', [Validators.required, validatePassword]);
 
   public signUpForm: FormGroup = this.formBuilder.group({
     firstName: this.fname,
-    lastName: this.fname,
+    lastName: this.lname,
     emailId: this.email,
     password: this.passwd
   });
 
   public termsAccepted: boolean = false;
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router) { }
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -37,7 +39,8 @@ export class SignupComponent implements OnInit {
     }
 
     this.commonService.setData(CommonConstants.signupURL, this.signUpForm.value).subscribe((response) => {
-      alert("Account Created Successfully");
+      this._dataService.setJSON(response.user);
+      this.router.navigate(['/home']);
     },
       err => {
         alert("Something went wrong!");
