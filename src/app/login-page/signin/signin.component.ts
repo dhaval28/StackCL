@@ -5,6 +5,7 @@ import { DataService } from './../../services/data-share.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword } from './../validations/validations';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -35,8 +36,16 @@ export class SigninComponent implements OnInit {
     if (this.signInForm.invalid) {
       return;
     }
-
+    let self = this;
     this.commonService.setData(CommonConstants.loginURL, this.signInForm.value).subscribe((response) => {
+      localStorage.setItem('token', response.token);
+      this.commonService.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        })
+      };
+      console.log(this.commonService.httpOptions);
       this._dataService.setJSON(response.user);
       this.router.navigate(['/home']);
     },

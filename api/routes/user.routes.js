@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    req.body.userRole = 'EXTERNAL';
+    req.body.userRole = 'ADMIN';
     req.body.userName = req.body.emailId.split('@')[0];
     const user = new User(req.body);
 
