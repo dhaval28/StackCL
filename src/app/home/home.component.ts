@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../services/data-share.service';
-import { CommonService } from './../services/common-service';
+import { CommonService } from '../services/common.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { CommonConstants } from './../common-constants';
 import { Router } from '@angular/router';
 
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   public userData: any;
   public sidePanelSelection: number = 0;
 
-  constructor(public _dataService: DataService, public commonService: CommonService, private router: Router) {
+  constructor(public _dataService: DataService, public commonService: CommonService, private router: Router, public authService: AuthenticationService) {
     this.userData = _dataService.getJSON();
   }
 
@@ -22,13 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   onClickLogout() {
-    this.commonService.setData(CommonConstants.logoutURL, {}).subscribe((response) => {
-      this._dataService.setJSON({});
-      this.router.navigate(['/login']);
-    },
-      err => {
-        console.log(err);
-      });
+    this.authService.logoutService();
   }
 
 }

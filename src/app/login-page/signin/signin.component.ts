@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { CommonService } from './../../services/common-service';
+import { CommonService } from '../../services/common.service';
 import { DataService } from './../../services/data-share.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
@@ -45,7 +45,6 @@ export class SigninComponent implements OnInit {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         })
       };
-      console.log(this.commonService.httpOptions);
       this._dataService.setJSON(response.user);
       this.router.navigate(['/home']);
     },

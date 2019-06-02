@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { CommonService } from './../../services/common-service';
+import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword } from './../validations/validations';
@@ -47,7 +47,6 @@ export class SignupComponent implements OnInit {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         })
       };
-      console.log(this.commonService.httpOptions);
       this._dataService.setJSON(response.user);
       this.router.navigate(['/home']);
     },

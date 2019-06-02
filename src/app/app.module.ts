@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -15,8 +15,17 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { DiscussionSectionComponent } from './home/discussion-section/discussion-section.component';
 import { QASectionComponent } from './home/qa-section/qa-section.component';
 import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
-import { CommonService } from './services/common-service';
+import { CommonService } from './services/common.service';
 import { DataService } from './services/data-share.service';
+import { AuthenticationService } from './services/authentication.service';
+import { ErrorInterceptor } from './services/error-interceptor.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -27,14 +36,15 @@ import { DataService } from './services/data-share.service';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MaterialModule,
+    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
-  providers: [CommonService, DataService],
+  providers: [CommonService, DataService, AuthenticationService, AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
