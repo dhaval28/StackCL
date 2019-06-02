@@ -18,6 +18,16 @@ router.post('/login', async (req, res) => {
 
 });
 
+router.post('/loginByToken', auth, async (req, res) => {
+
+    try {
+        res.status(200).send({ user: req.user.getPublicProfile(), token: req.token });
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+});
+
 router.post('/signup', async (req, res) => {
     req.body.userRole = 'ADMIN';
     req.body.userName = req.body.emailId.split('@')[0];

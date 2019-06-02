@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonConstants } from './../common-constants';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, style, animate, transition } from '@angular/animations';
+import { HttpHeaders } from '@angular/common/http';
+import { DataService } from './../services/data-share.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,9 +37,21 @@ export class LoginPageComponent implements OnInit {
   public commentInput = new FormControl('', [Validators.required]);
 
   public feedbackForm: FormGroup;
-  constructor(public commonService: CommonService, public formBuilder: FormBuilder) { }
+  constructor(public commonService: CommonService, public formBuilder: FormBuilder, private router: Router, public _dataService: DataService) { }
 
   ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.commonService.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        })
+      };
+      this.commonService.setData(CommonConstants.loginByToken, {}).subscribe((response) => {
+        this._dataService.setJSON(response.user);
+        this.router.navigate(['/home']);
+      });
+    }
   }
 
   onClickSignUp() {
