@@ -20,7 +20,6 @@ import { DataService } from './services/data-share.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { JwtModule } from '@auth0/angular-jwt';
 
 export function tokenGetter() {
