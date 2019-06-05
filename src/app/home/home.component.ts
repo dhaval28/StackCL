@@ -4,6 +4,7 @@ import { CommonService } from '../services/common.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { CommonConstants } from './../common-constants';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.commonService.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        })
+      };
+      this.commonService.setData(CommonConstants.loginByToken, {}).subscribe((response) => {
+        this.userData = response.user;
+      });
+    }
   }
 
   onClickLogout() {

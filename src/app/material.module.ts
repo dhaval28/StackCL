@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -14,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   exports: [
     BrowserModule,
     BrowserAnimationsModule, MatInputModule,
-    MatCheckboxModule, MatCardModule,
-    MatButtonModule, MatIconModule
+    MatCheckboxModule, MatCardModule, MatPaginatorModule,
+    MatButtonModule, MatTableModule
   ],
   providers: [],
   bootstrap: []

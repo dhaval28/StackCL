@@ -75,7 +75,7 @@ export class LoginPageComponent implements OnInit {
   onClickFeedbackSubmit() {
     this.feedbackForm = this.formBuilder.group({
       commentInput: this.commentInput,
-      starRating: this.starRating
+      starRating: this.starRating ? this.starRating : 0
     });
 
     if (this.feedbackForm.invalid) {

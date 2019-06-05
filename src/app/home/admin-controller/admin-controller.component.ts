@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
+import { MatTable } from '@angular/material';
 
 @Component({
   selector: 'app-admin-controller',
@@ -10,6 +11,9 @@ import { CommonConstants } from './../../common-constants';
 })
 export class AdminControllerComponent implements OnInit {
 
+  public feedBacksData = [];
+  public displayedColumns = ['commentInput', 'starRating', 'deleteFeedback'];
+  @ViewChild(MatTable) feedBacksTable: MatTable<any>; 
   constructor(public commonService: CommonService, private router: Router) { }
 
   ngOnInit() {
@@ -18,8 +22,14 @@ export class AdminControllerComponent implements OnInit {
 
   getDbInfo() {
     this.commonService.getData(CommonConstants.getDbInfo).subscribe((response) => {
-      console.log(response);
-    })
+      this.feedBacksData = response;
+    });
+  }
+
+  onClickDelete(rowData) {
+    this.commonService.setData(CommonConstants.deleteFeedback, rowData).subscribe((response) => {
+      this.feedBacksData = response;
+    });
   }
 
 }

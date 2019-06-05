@@ -8,6 +8,7 @@ export const CommonConstants = {
     signupURL: hostName + '/signup',
     feedbackURL: hostName + '/feedback',
     getDbInfo: hostName + '/dbInfo',
+    deleteFeedback: hostName + '/deleteFeedback',
     logoutURL: hostName + '/logout',
     deleteUserURL: hostName + '/deleteUser'
 };

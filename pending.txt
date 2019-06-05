@@ -1,7 +1,4 @@
-1. Using Material Icons
-2. Routing (Guards, Authentication, JWT)
-3. Encrypted Requests and Response (Hash)
-4. Side panel mat-sidepanel
-5. mat-table for admin controller
-6. Improved solution for Mongo Connection		--Done
-7. Remove top nav-bar
+1. Encrypted Requests and Response (Hash)
+2. Side panel mat-sidepanel
+3. Remove top nav-bar (Improve DOM unnecessary divs and styles)
+4. Loader

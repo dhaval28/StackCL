@@ -7,9 +7,7 @@
           <h4 *ngIf="isSignIn" [@slideInAnimation]>Login to your Account</h4>
           <div *ngIf="!isSignIn" [@slideInAnimation]>
             <h4>Create an Account</h4>
-            <button mat-button style="float: left; border: 2px solid lightblue;" (click)="isSignIn=!isSignIn">
-              <i class="fa fa-arrow-circle-left" aria-hidden="true"></i><span>Back</span>
-            </button>
+            <i style="float: left; cursor: pointer;" class="fa fa-2x fa-arrow-circle-left" (click)="isSignIn=!isSignIn" aria-hidden="true"></i>
           </div>
           <div *ngIf="isSignIn" class="signin-form" [@slideInAnimation]>
             <app-signin></app-signin>

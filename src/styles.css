@@ -5,4 +5,11 @@
 * {
     font-family: Montserrat; 
     /* Add !important to overwrite all elements */
-  }
+}
+
+.paginator-style {
+  background: darkgray;
+  color: black;
+  font-size: medium;
+  width: 90%;
+}

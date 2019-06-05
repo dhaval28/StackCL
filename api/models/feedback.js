@@ -5,7 +5,8 @@ const Feedback = mongoose.model('Feedback', {
         type: String
     },
     starRating: {
-        type: Number
+        type: Number,
+        default: 0
     }
 });
 
