@@ -4,16 +4,15 @@
     <mat-error *ngIf="username.invalid">Required</mat-error>
   </mat-form-field>
   <br><br>
-  <mat-form-field class="example-full-width">
-    <div>
+  <div>
+    <mat-form-field class="example-full-width">
       <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd"
         autocomplete="off" required>
-      <i style="float: right;" class="fa" [ngClass]="{'fa-eye': hide, 'fa-eye-slash': !hide}" (click)="hide = !hide"
-        aria-hidden="true"></i>
-    </div>
-    <mat-error *ngIf="passwd.errors?.required">Required</mat-error>
-    <mat-error *ngIf="passwd.invalid && passwd.errors?.invalidPass">Should be at least 8 characters long</mat-error>
-  </mat-form-field>
+      <mat-error *ngIf="passwd.errors?.required">Required</mat-error>
+      <mat-error *ngIf="passwd.invalid && passwd.errors?.invalidPass">Should be at least 8 characters long</mat-error>
+    </mat-form-field>
+    <i class="fa" [ngClass]="{'fa-eye': hide, 'fa-eye-slash': !hide}" (click)="hide = !hide" aria-hidden="true"></i>
+  </div>
   <br>
   <div>
     <a routerLink="">Forgot Password?</a>
