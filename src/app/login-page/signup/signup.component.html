@@ -14,15 +14,19 @@
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" required autocomplete="off">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'X' : 'O'}}</mat-icon>
+    <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" required
+      autocomplete="off">
+    <i style="float: right;" class="fa" [ngClass]="{'fa-eye': hide, 'fa-eye-slash': !hide}" (click)="hide = !hide"
+      aria-hidden="true"></i>
     <mat-error *ngIf="passwd.invalid">Required</mat-error>
     <mat-error *ngIf="passwd.invalid && passwd.errors?.invalidPass">Should be at least 8 characters long</mat-error>
   </mat-form-field>
   <br>
-  <mat-checkbox [(ngModel)]="termsAccepted" name="termsAccepted">I accept the <a routerLink="">Terms & Conditions</a>*</mat-checkbox>
+  <mat-checkbox [(ngModel)]="termsAccepted" name="termsAccepted">I accept the <a routerLink="">Terms & Conditions</a>*
+  </mat-checkbox>
   <br>
   <mat-card-actions>
-    <button [disabled]="!termsAccepted" mat-button style="border: 1px solid blue;" (click)="onClickSignUp()">Sign Up!</button>
+    <button [disabled]="!termsAccepted" mat-button style="border: 1px solid blue;" (click)="onClickSignUp()">Sign
+      Up!</button>
   </mat-card-actions>
 </form>

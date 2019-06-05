@@ -46,7 +46,7 @@
 
   <!--Support Section -->
   <div *ngIf="!showSupport">
-    <button mat-button class="support-button" (click)="onClickSupport()">X | A</button>
+      <i class="fa fa-4x fa-info-circle support-button" (click)="onClickSupport()" aria-hidden="true"></i>
   </div>
 
   <mat-card class="example-card support-card" *ngIf="showSupport" [@fadeInAnimation]>
@@ -64,7 +64,7 @@
         }">Feedback</span>
       </div>
       <div class="col-md-2">
-        <span class="support-tabs-header" (click)="onClickSupport()">O</span>
+        <i class="fa fa-window-close support-tabs-header" (click)="onClickSupport()" aria-hidden="true"></i>
       </div>
     </div>
     <hr size="2" color="black">

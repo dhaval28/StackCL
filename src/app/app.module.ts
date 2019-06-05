@@ -21,6 +21,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -35,7 +36,7 @@ export function tokenGetter() {
     HomeComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, MaterialModule,
+    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, MaterialModule, AngularFontAwesomeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

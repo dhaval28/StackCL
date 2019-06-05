@@ -20,14 +20,12 @@
 }
 
 .support-button {
+    cursor: pointer;
 	padding: 10px;
-	background: #000;
-	font-weight: bold;
 	color: #eee;
 	position: fixed;
 	bottom: 20px;
     right: 20px;
-    border-radius: 50%; 
 }
 
 .support-card {
