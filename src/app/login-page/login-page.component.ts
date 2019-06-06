@@ -6,7 +6,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from './../services/data-share.service';
 import { Router } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-page',
@@ -37,7 +38,8 @@ export class LoginPageComponent implements OnInit {
   public commentInput = new FormControl('', [Validators.required]);
 
   public feedbackForm: FormGroup;
-  constructor(public commonService: CommonService, public formBuilder: FormBuilder, private router: Router, public _dataService: DataService) { }
+  constructor(public commonService: CommonService, public formBuilder: FormBuilder, private router: Router, public _dataService: DataService,
+    public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     if (localStorage.getItem('token')) {
@@ -82,13 +84,20 @@ export class LoginPageComponent implements OnInit {
       return;
     }
 
+    this._loader.show();
     this.commonService.setData(CommonConstants.feedbackURL, this.feedbackForm.value).subscribe((response) => {
-      alert("Your response has been recorded. Thanks!!!!");
+      this._loader.hide();
+      this._snackBar.open('Your response has been recorded. Thanks!!!!', '', {
+        duration: 1500,
+      });
       this.showSupport = false;
       this.feedbackForm.reset();
     },
       err => {
-        alert("Oops Something went Wrong!!!!");
+        this._loader.hide();
+        this._snackBar.open('Oops Something went Wrong!!!!', '', {
+          duration: 1500,
+        });
       });
   }
 

@@ -22,6 +22,7 @@ import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -41,7 +42,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter
       }
-    })
+    }), Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [CommonService, DataService, AuthenticationService, AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],

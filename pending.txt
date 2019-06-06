@@ -1,5 +1,2 @@
 1. Encrypted Requests and Response (Hash)
-2. Side panel mat-sidepanel
-3. Remove top nav-bar (Improve DOM unnecessary divs and styles)
-4. Loader
-5. Moving loginByToken to app component
+2. Moving loginByToken to app component

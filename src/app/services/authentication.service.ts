@@ -5,11 +5,13 @@ import { DataService } from './data-share.service';
 import { CommonConstants } from './../common-constants';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Injectable()
 export class AuthenticationService {
     httpOptions: Object;
-    constructor(public commonService: CommonService, public _dataService: DataService, public router: Router, public jwtHelper: JwtHelperService) {
+    constructor(public commonService: CommonService, public _dataService: DataService, public router: Router, public jwtHelper: JwtHelperService,
+        public _loader: Ng4LoadingSpinnerService) {
         this.httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -18,10 +20,13 @@ export class AuthenticationService {
         };
     }
     logoutService() {
+        this._loader.show();
         this.commonService.setData(CommonConstants.logoutURL, {}).subscribe((response) => {
+            this._loader.hide();
             this.logout();
         },
             err => {
+                this._loader.hide();
                 console.log(err);
             });
     }
@@ -37,5 +42,5 @@ export class AuthenticationService {
         // Check whether the token is expired and return
         // true or false
         return !this.jwtHelper.isTokenExpired(token);
-      }
+    }
 }

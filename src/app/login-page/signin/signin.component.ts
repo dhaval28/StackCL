@@ -6,7 +6,8 @@ import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword } from './../validations/validations';
 import { HttpHeaders } from '@angular/common/http';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signin',
@@ -24,7 +25,8 @@ export class SigninComponent implements OnInit {
   });
   public submitted = false;
 
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService) { }
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
+    public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -36,8 +38,9 @@ export class SigninComponent implements OnInit {
     if (this.signInForm.invalid) {
       return;
     }
-    let self = this;
+    this._loader.show();
     this.commonService.setData(CommonConstants.loginURL, this.signInForm.value).subscribe((response) => {
+      this._loader.hide();
       localStorage.setItem('token', response.token);
       this.commonService.httpOptions = {
         headers: new HttpHeaders({
@@ -49,7 +52,10 @@ export class SigninComponent implements OnInit {
       this.router.navigate(['/home']);
     },
       err => {
-        alert("Invalid Credentials");
+        this._loader.hide();
+        this._snackBar.open('Invalid Credentials', '', {
+          duration: 1500,
+        });
       });
 
   }
