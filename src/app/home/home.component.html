@@ -1,6 +1,6 @@
-<div>
-    <div class="row">
-        <div id="sidePanelDiv" class="col-md-2">
+<div class="row">
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav [mode]="over" style="width: 250px;">
             <div id="profileSection" class="row">
                 <div class="col-md-12">
                     <div id="profilePicture">
@@ -12,16 +12,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul>
-                        <li (click)="sidePanelSelection = 0">
+                        <li (click)="sidePanelSelection = 0; sidenav.toggle()">
                             Dashboard
                         </li>
-                        <li (click)="sidePanelSelection = 1">
+                        <li (click)="sidePanelSelection = 1; sidenav.toggle()">
                             Q&A Section
                         </li>
-                        <li (click)="sidePanelSelection = 2">
+                        <li (click)="sidePanelSelection = 2; sidenav.toggle()">
                             Discussion Section
                         </li>
-                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 3">
+                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 3; sidenav.toggle()">
                             Admin Controller
                         </li>
                     </ul>
@@ -32,12 +32,14 @@
                     <button mat-button (click)="onClickLogout()">Logout</button>
                 </div>
             </div>
-        </div>
-        <div class="col-md-10">
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <p><button style="float: left;" mat-button (click)="sidenav.toggle()">Toggle</button></p>
             <app-dashboard *ngIf="sidePanelSelection == 0"></app-dashboard>
             <app-qa-section *ngIf="sidePanelSelection == 1"></app-qa-section>
             <app-discussion-section *ngIf="sidePanelSelection == 2"></app-discussion-section>
             <app-admin-controller *ngIf="sidePanelSelection == 3"></app-admin-controller>
-        </div>
-    </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>
