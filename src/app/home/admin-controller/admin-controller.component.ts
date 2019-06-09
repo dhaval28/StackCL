@@ -23,7 +23,7 @@ export class AdminControllerComponent implements OnInit {
 
   getDbInfo() {
     this._loader.show();
-    this.commonService.getData(CommonConstants.getDbInfo).subscribe((response) => {
+    this.commonService.setData(CommonConstants.getDbInfo, {}).subscribe((response) => {
       this._loader.hide();
       this.feedBacksData = response;
     });

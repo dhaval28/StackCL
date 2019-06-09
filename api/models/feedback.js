@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Feedback = mongoose.model('Feedback', {
+const feedBackSchema = new mongoose.Schema({
     commentInput: {
         type: String
     },
@@ -8,6 +8,10 @@ const Feedback = mongoose.model('Feedback', {
         type: Number,
         default: 0
     }
+}, {
+    timestamps: true
 });
+
+const Feedback = new mongoose.model('Feedback', feedBackSchema);
 
 module.exports = Feedback;

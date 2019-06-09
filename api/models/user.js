@@ -28,6 +28,8 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+}, {
+    timestamps: true
 });
 
 //generating token -- using .methods to define function on instance
