@@ -7,7 +7,7 @@ let userRoutes = require('./api/routes/user.routes');
 let auth = require('./api/middleware/auth');
 
 let app = express();
-let port = process.env.PORT || 5000;
+let port = process.env.PORT;
 
 // Maintenance Mode middleware ( Cancel all requests )
 // app.use((req, res, next) => {

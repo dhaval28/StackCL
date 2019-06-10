@@ -3,6 +3,7 @@ const router = new express.Router();
 const User = require('./../models/user');
 const Feedback = require('./../models/feedback');
 const auth = require('./../middleware/auth');
+const accountMethods = require('./../emails/account');
 
 router.post('/login', async (req, res) => {
 
@@ -73,6 +74,36 @@ router.post('/feedback', async (req, res) => {
     } catch (e) {
         res.status(400).send(e);
     }
+});
+
+router.post('/forgotPassword', async (req, res) => {
+    let result = '';        //stores a random string as a new password
+    let chars = '0123456789';
+    for (let i = 0; i < 8; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    try {
+        const user = await User.findOne(req.body);
+        if (!user) {
+            throw new Error('EmailNotFound');
+        }
+
+        if (user.lastPasswordReset && (new Date().valueOf() - new Date(user.lastPasswordReset).valueOf() < 86400000)) {
+            throw new Error('ForgotPasswordLimit');
+        }
+
+        user.password = result;
+        console.log(result);
+
+        accountMethods.sendForgotPasswordMail(user);
+        user.lastPasswordReset = new Date();
+        await user.save();
+        res.status(201).send(true);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+
 });
 
 router.delete('/deleteUser', auth, async (req, res) => {

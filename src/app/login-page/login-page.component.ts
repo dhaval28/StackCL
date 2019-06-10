@@ -33,6 +33,7 @@ export class LoginPageComponent implements OnInit {
   public isSignIn: boolean = true;
   public contactOrFeedback: string = "contact-us-tab";
   public showSupport: boolean = false;
+  public showForgotPassword: boolean = false;
 
   public starRating: number;
   public commentInput = new FormControl('', [Validators.required]);
@@ -72,6 +73,18 @@ export class LoginPageComponent implements OnInit {
 
   getRating(e) {
     this.starRating = e.rating;
+  }
+
+  onClickBack() {
+    if (this.showForgotPassword) {
+      this.showForgotPassword = !this.showForgotPassword;
+    }
+    this.isSignIn = true;
+  }
+
+  forgotPasswordClicked() {
+    this.showForgotPassword = true;
+    this.isSignIn = false;
   }
 
   onClickFeedbackSubmit() {

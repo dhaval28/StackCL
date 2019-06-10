@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema({
     userRole: {
         type: String
     },
+    lastPasswordReset: {
+        type: Date
+    },
     tokens: [{
         token: {
             type: String,
@@ -35,7 +38,7 @@ const userSchema = new mongoose.Schema({
 //generating token -- using .methods to define function on instance
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, 'stackclsecret', { expiresIn: '1d' });
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.STACK_CL_SECRET, { expiresIn: '1d' });
     user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;

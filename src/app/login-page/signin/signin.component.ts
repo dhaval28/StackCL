@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { DataService } from './../../services/data-share.service';
@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  @Output() forgotPasswordClicked = new EventEmitter();
 
   public username = new FormControl('', [Validators.required]);
   public passwd = new FormControl('', [Validators.required, validatePassword]);
@@ -58,6 +59,10 @@ export class SigninComponent implements OnInit {
         });
       });
 
+  }
+
+  onClickForgotPassword() {
+    this.forgotPasswordClicked.emit(true);
   }
 
 }

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SigninComponent } from './login-page/signin/signin.component';
 import { SignupComponent } from './login-page/signup/signup.component';
+import { ForgotPasswordComponent } from './login-page/forgot-password/forgot-password.component';
 import { RatingComponent } from './login-page/rating/rating.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
@@ -31,7 +32,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
+    LoginPageComponent, ForgotPasswordComponent,
     SigninComponent, DashboardComponent, DiscussionSectionComponent, QASectionComponent, AdminControllerComponent,
     SignupComponent, RatingComponent,
     HomeComponent
