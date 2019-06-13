@@ -4,6 +4,23 @@ const User = require('./../models/user');
 const Feedback = require('./../models/feedback');
 const auth = require('./../middleware/auth');
 const accountMethods = require('./../emails/account');
+const multer = require('multer');
+const sharp = require('sharp');
+const upload = multer({
+    limits: {
+        fileSize: 3000000
+    },
+    fileFilter(req, file, cb) {
+        let validExtensions = ['jpg', 'jpeg', 'png'];
+        extensionArr = file.originalname.split('.');
+        if (!validExtensions.includes(extensionArr[extensionArr.length - 1].toLowerCase())) {
+            return cb(new Error('Invalid File Type.'));
+        }
+
+        cb(undefined, true);
+    }
+});
+
 
 router.post('/login', async (req, res) => {
 
@@ -104,6 +121,23 @@ router.post('/forgotPassword', async (req, res) => {
         res.status(400).send(e);
     }
 
+});
+
+router.post('/setProfilePicture', auth, upload.single('avatar'), async (req, res) => {
+    const buffer = await sharp(req.file.buffer).resize({ width: 350, height: 350 }).png().toBuffer()
+    req.user.avatar = buffer;
+    await req.user.save();
+    res.status(200).send(req.user.avatar);
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
+});
+
+router.post('/removeProfilePicture', auth, async (req, res) => {
+    req.user.avatar = undefined;
+    await req.user.save();
+    res.send();
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
 });
 
 router.delete('/deleteUser', auth, async (req, res) => {

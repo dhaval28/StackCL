@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
     lastPasswordReset: {
         type: Date
     },
+    avatar: {
+        type: Buffer
+    },
     tokens: [{
         token: {
             type: String,

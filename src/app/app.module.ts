@@ -16,6 +16,7 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { DiscussionSectionComponent } from './home/discussion-section/discussion-section.component';
 import { QASectionComponent } from './home/qa-section/qa-section.component';
 import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
+import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { CommonService } from './services/common.service';
 import { DataService } from './services/data-share.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -32,7 +33,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent, ForgotPasswordComponent,
+    LoginPageComponent, ForgotPasswordComponent, UserProfileComponent,
     SigninComponent, DashboardComponent, DiscussionSectionComponent, QASectionComponent, AdminControllerComponent,
     SignupComponent, RatingComponent,
     HomeComponent

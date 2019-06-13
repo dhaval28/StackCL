@@ -3,7 +3,7 @@
 }
 
 #profilePicture {
-    background-color: red;
+    border: 2px solid black;
     height: 100px;
     width: 100px;
     margin-top: 10px;

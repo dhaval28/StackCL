@@ -7,6 +7,8 @@ export const CommonConstants = {
     loginByToken: hostName + '/loginByToken',
     signupURL: hostName + '/signup',
     forgotPasswordURL: hostName + '/forgotPassword',
+    removeProfilePicture: hostName + '/removeProfilePicture',
+    setProfilePicture: hostName + '/setProfilePicture',
     feedbackURL: hostName + '/feedback',
     getDbInfo: hostName + '/dbInfo',
     deleteFeedback: hostName + '/deleteFeedback',

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') && (Object.keys(this.userData).length === 0 && this.userData.constructor === Object)) {
       this.commonService.httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
