@@ -18,3 +18,46 @@
     left: 0;
     right: 0;
 }
+
+/deep/
+.mat-drawer-inner-container {
+    background-color: #0d4254;
+    overflow: hidden !important;
+}
+
+.toggleIcon {
+    float: left;
+    top: 200px;
+    padding: 0;
+    border-right-style: dotted;
+    z-index: 999;
+}
+
+.sidepanel-section {
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: left;
+    padding: 10px;
+    color: white;
+    align-content: center;
+}
+
+.sidepanel-section:hover {
+    color: black;
+    background-color: white !important;
+}
+
+.selectedSection {
+    color: greenyellow;
+}
+
+.logoutButtonDiv {
+    bottom: 60px;
+    position: fixed;
+}
+
+.logoutSessionsButtonDiv {
+    bottom: 20px;
+    position: fixed;
+}

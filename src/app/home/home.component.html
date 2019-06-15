@@ -4,44 +4,69 @@
             <div id="profileSection" class="row">
                 <div class="col-md-12">
                     <div id="profilePicture" style="overflow: hidden;">
-                        <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../assets/img/default-avatar.png'" width="100" height="100">
+                        <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../assets/img/default-avatar.png'"
+                            width="100" height="100">
                     </div>
-                    <span style="color: white;"></span>{{userData.firstName}} {{userData.lastName}}
+                    <span style="color: white;">{{userData.userName}}</span>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 0 }"
+                (click)="sidePanelSelection = 0; sidenav.toggle()">
                 <div class="col-md-12">
-                    <ul>
-                        <li (click)="sidePanelSelection = 0; sidenav.toggle()">
-                            Dashboard
-                        </li>
-                        <li (click)="sidePanelSelection = 1; sidenav.toggle()">
-                            Profile
-                        </li>
-                        <li (click)="sidePanelSelection = 2; sidenav.toggle()">
-                            Notifications
-                        </li>
-                        <li (click)="sidePanelSelection = 3; sidenav.toggle()">
-                            Q&A Section
-                        </li>
-                        <li (click)="sidePanelSelection = 4; sidenav.toggle()">
-                            Discussion Section
-                        </li>
-                        <li *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()">
-                            Admin Controller
-                        </li>
-                    </ul>
+                    <span>Dashboard</span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 1 }"
+                (click)="sidePanelSelection = 1; sidenav.toggle()">
+                <div class="col-md-12">
+                    <span>Profile</span>
+                </div>
+            </div>
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 2 }"
+                (click)="sidePanelSelection = 2; sidenav.toggle()">
+                <div class="col-md-12">
+                    <span>Notifications</span>
+                </div>
+            </div>
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 3 }"
+                (click)="sidePanelSelection = 3; sidenav.toggle()">
+                <div class="col-md-12">
+                    <span>Q&A Section</span>
+                </div>
+            </div>
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 4 }"
+                (click)="sidePanelSelection = 4; sidenav.toggle()">
+                <div class="col-md-12">
+                    <span>Discussion Section</span>
+                </div>
+            </div>
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 5 }"
+                *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()">
+                <div class="col-md-12">
+                    <span>Admin Controller</span>
+                </div>
+            </div>
+
+            <div class="row logoutButtonDiv">
                 <div class="col-md-12">
                     <button mat-button (click)="onClickLogout()">Logout</button>
+                </div>
+            </div>
+            <div class="row logoutSessionsButtonDiv">
+                <div class="col-md-12">
+                    <button mat-button (click)="onClickLogoutAllSessions()">
+                        Logout All Sessions
+                        <!-- <i style="float: right;" class="fa fa-power-off"></i> -->
+                    </button>
                 </div>
             </div>
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <p><button style="float: left;" mat-button (click)="sidenav.toggle()">Toggle</button></p>
+            <button class="toggleIcon" mat-button (click)="sidenav.toggle()">
+                <img src="./../../assets/img/stackcl_logo.jpg" width="100" height="40">
+            </button>
             <app-dashboard *ngIf="sidePanelSelection == 0"></app-dashboard>
             <app-user-profile [userData]="userData" *ngIf="sidePanelSelection == 1"></app-user-profile>
             <app-qa-section *ngIf="sidePanelSelection == 3"></app-qa-section>

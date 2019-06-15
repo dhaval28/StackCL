@@ -1,20 +1,32 @@
-<div class="row">
-    <div class="col-md-4">
-        <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../../assets/img/default-avatar.png'"
-            width="250" height="250">
-        <br>
-        <br>
-        <button mat-button style="border: 1px solid white; width: 175px;" *ngIf="userData.avatar" (click)="onClickRemovePicture()">Remove
-            Picture</button>
-        <br>
-        <form>
-            <label for="file-upload" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Change Picture
-            </label>
-            <input id="file-upload" type="file" name="avatar" (change)="setProfilePicture($event.target.files)">
-        </form>
-    </div>
-    <div class="col-md-8" style="text-align: left;">
-        <h2>{{userData.firstName}} {{userData.lastName}}</h2>
-    </div>
+<div class="container">
+    <mat-card class="component-content-card">
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-4">
+                    <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../../assets/img/default-avatar.png'"
+                        width="250" height="250">
+                    <br>
+                    <br>
+                    <button mat-button style="border: 1px solid black; width: 175px;" *ngIf="userData.avatar"
+                        (click)="onClickRemovePicture()">Remove
+                        Picture</button>
+                    <br>
+                    <form [formGroup]="setProfilePictureForm" (ngSubmit)="setProfilePicture()">
+                        <div>
+                            <label for="file-upload" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> Change Picture
+                            </label>
+                            <input id="file-upload" type="file" name="avatar" (change)="onFileSelect($event)" />
+                        </div>
+                        <div>
+                            <button type="submit">Upload</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-8" style="text-align: left;">
+                    <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
 </div>

@@ -127,8 +127,9 @@ router.post('/setProfilePicture', auth, upload.single('avatar'), async (req, res
     const buffer = await sharp(req.file.buffer).resize({ width: 350, height: 350 }).png().toBuffer()
     req.user.avatar = buffer;
     await req.user.save();
-    res.status(200).send(req.user.avatar);
+    res.status(200).send();
 }, (error, req, res, next) => {
+    console.log(error);
     res.status(400).send({ error: error.message });
 });
 
