@@ -15,6 +15,8 @@ export class UserProfileComponent implements OnInit {
   @Input() userData;
   setProfilePictureForm: FormGroup;
   httpOptions: Object;
+  editProfileFlag: boolean = false;
+
   constructor(public commonService: CommonService, private http: HttpClient, private formBuilder: FormBuilder, public _loader: Ng4LoadingSpinnerService) {
 
   }
@@ -55,6 +57,18 @@ export class UserProfileComponent implements OnInit {
       const file = event.target.files[0];
       this.setProfilePictureForm.get('avatar').setValue(file);
     }
+  }
+
+  onClickEditProfile() {
+    this.editProfileFlag = true;
+  }
+
+  onClickEditSave() {
+    this.editProfileFlag = false;
+  }
+
+  onClickEditCancel() {
+    this.editProfileFlag = false;
   }
 
 }
