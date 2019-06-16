@@ -14,5 +14,6 @@ export const CommonConstants = {
     deleteFeedback: hostName + '/deleteFeedback',
     logoutURL: hostName + '/logout',
     logoutSessionsURL: hostName + '/logoutAllSessions',
-    deleteUserURL: hostName + '/deleteUser'
+    deleteUserURL: hostName + '/deleteUser',
+    updateProfile: hostName + '/updateProfile'
 };

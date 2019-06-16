@@ -15,26 +15,24 @@
                     <div class="row">
                         <div class="col-md-12">
                             <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../../assets/img/default-avatar.png'"
+                                [ngStyle]="{ 'opacity': profilePictureStatus === 'changed' || profilePictureStatus === 'removed' ? '0.2' : '1' }"
                                 width="200" height="200">
                         </div>
                     </div>
                     <br>
-                    <div class="row"  *ngIf="editProfileFlag">
+                    <div class="row" *ngIf="editProfileFlag">
                         <div class="col-md-6" *ngIf="userData.avatar">
                             <button mat-flat-button color="warn" style="height: 35px;"
                                 (click)="onClickRemovePicture()">Remove
                                 Picture</button>
                         </div>
                         <div class="col-md-6">
-                            <form [formGroup]="setProfilePictureForm" (ngSubmit)="setProfilePicture()">
+                            <form [formGroup]="setProfilePictureForm">
                                 <div>
                                     <label for="file-upload" class="custom-file-upload">
                                         <i class="fa fa-cloud-upload"></i> Change Picture
                                     </label>
                                     <input id="file-upload" type="file" name="avatar" (change)="onFileSelect($event)" />
-                                </div>
-                                <div>
-                                    <button type="submit">Upload</button>
                                 </div>
                             </form>
                         </div>
@@ -42,10 +40,15 @@
                     </div>
                 </div>
                 <div class="col-md-8" style="text-align: left;">
-                    <h6 class="editProfileButton" (click)="onClickEditProfile()"><i class="fa fa-edit"></i> Edit Profile</h6>
+                    <h6 class="editProfileButton" (click)="onClickEditProfile()"><i class="fa fa-edit"></i> Edit Profile
+                    </h6>
                     <h2>{{userData.firstName}} {{userData.lastName}}</h2>
-                    <strong style="color: blue">@{{userData.userName}}</strong><br>
-                    <span>Tech freak. Loves to code. Loves to ask questions. #peace</span><br><br>
+                    <strong style="color: blue">@{{userData.userName}}</strong><br><br>
+                    <mat-form-field style="width: inherit;" *ngIf="editProfileFlag">
+                        <textarea matInput placeholder="User Summary" [(ngModel)]="userDataToSave.userSummary"></textarea>
+                    </mat-form-field>
+                    <span *ngIf="!editProfileFlag">{{userData.userSummary}}</span>
+                    <br><br>
                     <div class="row" style="text-align: center">
                         <div class="col-md-3">
                             <span>Questions Asked</span><br><strong>0</strong>
@@ -61,7 +64,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3" style="border: 1px solid red; height: 100vh;">
-                    
+
                 </div>
                 <div class="col-md-9" style="border: 1px solid red; height: 100vh;">
 
