@@ -3,7 +3,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
-import { validatePassword } from './../validations/validations';
+import { validatePassword, validateUserName, checkUserNameAvailability } from './../validations/validations';
 import { DataService } from './../../services/data-share.service';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -16,6 +16,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class SignupComponent implements OnInit {
 
   public email = new FormControl('', [Validators.required, Validators.email]);
+  public userName = new FormControl('', [Validators.required, validateUserName, validateUserName.bind(this)]);
   public fname = new FormControl('', [Validators.required]);
   public lname = new FormControl('');
   public passwd = new FormControl('', [Validators.required, validatePassword]);
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
     firstName: this.fname,
     lastName: this.lname,
     emailId: this.email,
+    userName: this.userName,
     password: this.passwd
   });
 

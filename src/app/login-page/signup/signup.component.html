@@ -1,4 +1,4 @@
-<form name="signup-form">
+<form name="signup-form" style="margin-top: -30px;">
   <mat-form-field class="example-full-width">
     <input type="text" matInput placeholder="First Name" [formControl]="fname" required autocomplete="off">
     <mat-error *ngIf="fname.invalid">Required</mat-error>
@@ -13,11 +13,24 @@
     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Setup Username" [formControl]="userName" required autocomplete="off">
+    <mat-error *ngIf="userName.errors?.required">Required</mat-error>
+    <mat-error *ngIf="userName.invalid && userName.errors?.invalidUsername">Should be at least 6 characters long</mat-error>
+    <small *ngIf="userName.status === 'PENDING'">
+      Checking...
+    </small>
+    <small *ngIf="userName.status === 'VALID'">
+      😺 Email is available!
+    </small>
+    <mat-error *ngIf="userName.invalid && userName.errors?.invalidUsername">Checking...</mat-error>
+  </mat-form-field>
+  <br>
   <div>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" required
         autocomplete="off">
-      <mat-error *ngIf="passwd.invalid">Required</mat-error>
+      <mat-error *ngIf="passwd.errors?.required">Required</mat-error>
       <mat-error *ngIf="passwd.invalid && passwd.errors?.invalidPass">Should be at least 8 characters long</mat-error>
     </mat-form-field>
     <i class="fa" [ngClass]="{'fa-eye': hide, 'fa-eye-slash': !hide}" (click)="hide = !hide" aria-hidden="true"></i>
