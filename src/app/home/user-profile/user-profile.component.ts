@@ -60,13 +60,10 @@ export class UserProfileComponent implements OnInit {
         })
       };
       this._loader.show();
-      await this.http.post(CommonConstants.setProfilePicture, formData, this.httpOptions).subscribe((response) => {
-      }, err => {
-        alert('Oops! Something went wrong! Cannot change Profile Picture.');
-      });
+      await this.updateProfilePicture(formData);
     }
     this._loader.show();
-     await this.commonService.setData(CommonConstants.updateProfile, this.userDataToSave).subscribe((response) => {
+    this.commonService.setData(CommonConstants.updateProfile, this.userDataToSave).subscribe((response) => {
       this._loader.hide();
       this.userData = response;
     }, err => {
@@ -78,6 +75,17 @@ export class UserProfileComponent implements OnInit {
   onClickEditCancel() {
     this.editProfileFlag = false;
     this.profilePictureStatus = '';
+  }
+
+  updateProfilePicture(formData) {
+    return new Promise((resolve, reject) => {
+      this.http.post(CommonConstants.setProfilePicture, formData, this.httpOptions).subscribe((response) => {
+        resolve();
+      }, err => {
+        resolve();
+        alert('Oops! Something went wrong! Cannot change Profile Picture.');
+      });
+    });
   }
 
 }

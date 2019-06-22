@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-md-8" style="text-align: left;">
-                    <h6 class="editProfileButton" (click)="onClickEditProfile()"><i class="fa fa-edit"></i> Edit Profile
+                    <h6  *ngIf="!editProfileFlag" class="editProfileButton" (click)="onClickEditProfile()"><i class="fa fa-edit"></i> Edit Profile
                     </h6>
                     <h2>{{userData.firstName}} {{userData.lastName}}</h2>
                     <strong style="color: blue">@{{userData.userName}}</strong><br><br>

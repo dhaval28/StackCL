@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: Buffer
     },
+    userSummary: {
+        type: String
+    },
     tokens: [{
         token: {
             type: String,

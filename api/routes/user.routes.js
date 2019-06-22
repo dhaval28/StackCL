@@ -133,10 +133,16 @@ router.post('/setProfilePicture', auth, upload.single('avatar'), async (req, res
     res.status(400).send({ error: error.message });
 });
 
-router.post('/removeProfilePicture', auth, async (req, res) => {
-    req.user.avatar = undefined;
+router.post('/updateProfile', auth, async (req, res) => {
+    
+    req.user["userSummary"] = req.body.userSummary;
+    if (req.body.avatar === null) {
+        req.user.avatar = null;
+    }
     await req.user.save();
-    res.send();
+
+    const user = await User.findById(req.user._id);
+    res.status(200).send(user.getPublicProfile());
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message });
 });
