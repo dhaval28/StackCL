@@ -8,7 +8,8 @@
           <div *ngIf="!isSignIn || showForgotPassword" [@slideInAnimation]>
             <h4 *ngIf="!isSignIn && !showForgotPassword">Create an Account</h4>
             <h4 *ngIf="showForgotPassword">Reset your Password</h4>
-            <i style="float: left; cursor: pointer;" class="fa fa-2x fa-arrow-circle-left" (click)="onClickBack()" aria-hidden="true"></i>
+            <i style="float: left; cursor: pointer;" class="fa fa-2x fa-arrow-circle-left" (click)="onClickBack()"
+              aria-hidden="true"></i>
           </div>
           <div *ngIf="isSignIn && !showForgotPassword" class="signin-form" [@slideInAnimation]>
             <app-signin (forgotPasswordClicked)="forgotPasswordClicked()"></app-signin>
@@ -33,14 +34,11 @@
           <div style="margin: 10px;">
             <ul>
               <li>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris porttitor bibendum est, eu imperdiet
-                sapien interdum nec.
+                StackCL is a place to gain and share knowledge. It's a platform to ask questions and connect with people
+                who contribute unique insights and quality answers.
               </li>
-              <li>
-                Duis sollicitudin scelerisque tortor, nec eleifend ipsum mattis vitae. Nullam ut ex
-                ultricies, malesuada lacus vitae, cursus lectus. Curabitur vulputate felis eget metus aliquet, quis
-                tristique eros efficitur. Integer feugiat imperdiet odio eu congue. Curabitur pharetra molestie elit.
-              </li>
+              <br>
+              <span>More Coming Soon...</span>
             </ul>
           </div>
         </div>
