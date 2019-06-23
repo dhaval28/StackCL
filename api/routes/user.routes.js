@@ -48,7 +48,6 @@ router.post('/loginByToken', auth, async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     req.body.userRole = 'ADMIN';
-    req.body.userName = req.body.emailId.split('@')[0];
     const user = new User(req.body);
 
     try {
@@ -134,17 +133,35 @@ router.post('/setProfilePicture', auth, upload.single('avatar'), async (req, res
 });
 
 router.post('/updateProfile', auth, async (req, res) => {
-    
+
     req.user["userSummary"] = req.body.userSummary;
     if (req.body.avatar === null) {
         req.user.avatar = null;
     }
-    await req.user.save();
 
-    const user = await User.findById(req.user._id);
-    res.status(200).send(user.getPublicProfile());
-}, (error, req, res, next) => {
-    res.status(400).send({ error: error.message });
+    try {
+        await req.user.save();
+
+        const user = await User.findById(req.user._id);
+        res.status(200).send(user.getPublicProfile());
+    }
+
+    catch (e) {
+        res.status(400).send(e);
+    }
+});
+
+router.post('/checkUserNameAvailability', async (req, res) => {
+
+    try {
+        const user = await User.findOne({ userName: req.body.userName }, 'userName');
+
+        user ? res.status(200).send({ available: false }) : res.status(200).send({ available: true });
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+
 });
 
 router.delete('/deleteUser', auth, async (req, res) => {

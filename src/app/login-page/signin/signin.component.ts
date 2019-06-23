@@ -15,6 +15,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
+    public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
+
   @Output() forgotPasswordClicked = new EventEmitter();
 
   public username = new FormControl('', [Validators.required]);
@@ -25,9 +28,6 @@ export class SigninComponent implements OnInit {
     passwd: this.passwd
   });
   public submitted = false;
-
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
-    public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }

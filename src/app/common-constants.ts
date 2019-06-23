@@ -11,6 +11,7 @@ export const CommonConstants = {
     setProfilePicture: hostName + '/setProfilePicture',
     feedbackURL: hostName + '/feedback',
     getDbInfo: hostName + '/dbInfo',
+    checkUserNameAvailability: hostName + '/checkUserNameAvailability',
     deleteFeedback: hostName + '/deleteFeedback',
     logoutURL: hostName + '/logout',
     logoutSessionsURL: hostName + '/logoutAllSessions',

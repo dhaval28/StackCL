@@ -13,23 +13,3 @@ export function validateUserName(control: AbstractControl) {
   }
   return null;
 }
-
-export function checkUserNameAvailability(control: AbstractControl) {
-  return new Promise(resolve => {
-
-    //Fake a slow response from server
-
-    setTimeout(() => {
-      if (control.value.toLowerCase() === "greg") {
-
-        resolve({
-          "username taken": true
-        });
-
-      } else {
-        resolve(null);
-      }
-    }, 2000);
-
-  });
-}

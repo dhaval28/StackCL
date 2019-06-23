@@ -1,4 +1,4 @@
-<form name="signup-form" style="margin-top: -30px;">
+<form name="signup-form" style="margin-top: -20px;">
   <mat-form-field class="example-full-width">
     <input type="text" matInput placeholder="First Name" [formControl]="fname" required autocomplete="off">
     <mat-error *ngIf="fname.invalid">Required</mat-error>
@@ -13,19 +13,17 @@
     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <br>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Setup Username" [formControl]="userName" required autocomplete="off">
-    <mat-error *ngIf="userName.errors?.required">Required</mat-error>
-    <mat-error *ngIf="userName.invalid && userName.errors?.invalidUsername">Should be at least 6 characters long</mat-error>
-    <small *ngIf="userName.status === 'PENDING'">
-      Checking...
-    </small>
-    <small *ngIf="userName.status === 'VALID'">
-      😺 Email is available!
-    </small>
-    <mat-error *ngIf="userName.invalid && userName.errors?.invalidUsername">Checking...</mat-error>
-  </mat-form-field>
-  <br>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Setup Username (At least 6 characters)" [formControl]="userName" required autocomplete="off">
+      <mat-error *ngIf="userName.errors?.required">Required</mat-error>
+      <mat-error *ngIf="userName.invalid && userName.errors?.invalidUsername">Should be at least 6 characters long
+      </mat-error>
+    </mat-form-field>
+    <i style="color: green" class="fa fa-check-circle" *ngIf="userName.status === 'VALID'" aria-hidden="true"></i>
+    <i style="color: red" class="fa fa-exclamation-triangle" *ngIf="userName.errors && userName.errors.usernameInUse || userName.invalid" aria-hidden="true"></i>
+    <i *ngIf="userName.status !== 'VALID' && !(userName.errors && userName.errors.usernameInUse || userName.invalid)" class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
+  </div>
   <div>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Password" [type]="hide ? 'text' : 'password'" [formControl]="passwd" required
@@ -40,7 +38,7 @@
   </mat-checkbox>
   <br>
   <mat-card-actions>
-    <button [disabled]="!termsAccepted" mat-raised-button color="primary" (click)="onClickSignUp()">Sign
+    <button [disabled]="!termsAccepted || signUpForm.invalid" mat-raised-button color="primary" (click)="onClickSignUp()">Sign
       Up!</button>
   </mat-card-actions>
 </form>

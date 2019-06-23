@@ -25,6 +25,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { UsernameValidator } from './login-page/validations/username';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -46,7 +47,7 @@ export function tokenGetter() {
       }
     }), Ng4LoadingSpinnerModule.forRoot()
   ],
-  providers: [CommonService, DataService, AuthenticationService, AuthGuardService,
+  providers: [CommonService, DataService, AuthenticationService, AuthGuardService, UsernameValidator,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })

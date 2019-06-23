@@ -3,10 +3,10 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
-import { validatePassword, validateUserName, checkUserNameAvailability } from './../validations/validations';
+import { validatePassword, validateUserName } from './../validations/validations';
 import { DataService } from './../../services/data-share.service';
 import { HttpHeaders } from '@angular/common/http';
-
+import { UsernameValidator } from './../validations/username'
 
 @Component({
   selector: 'app-signup',
@@ -15,8 +15,11 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class SignupComponent implements OnInit {
 
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
+    public userNameValidator: UsernameValidator) { }
+
   public email = new FormControl('', [Validators.required, Validators.email]);
-  public userName = new FormControl('', [Validators.required, validateUserName, validateUserName.bind(this)]);
+  public userName = new FormControl('', [Validators.required, validateUserName], this.userNameValidator.checkUsername.bind(this.userNameValidator));
   public fname = new FormControl('', [Validators.required]);
   public lname = new FormControl('');
   public passwd = new FormControl('', [Validators.required, validatePassword]);
@@ -30,7 +33,6 @@ export class SignupComponent implements OnInit {
   });
 
   public termsAccepted: boolean = false;
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService) { }
 
   ngOnInit() {
   }
