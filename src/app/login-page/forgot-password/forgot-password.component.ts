@@ -3,7 +3,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
-import { DataService } from './../../services/data-share.service';
+import { PUserDataService } from '../../services/primary-user-data.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,7 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
     emailId: this.email,
   });
 
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService) { }
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _pUserDataService: PUserDataService) { }
 
   ngOnInit() {
   }

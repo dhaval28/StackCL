@@ -4,21 +4,21 @@
             <div id="profileSection" class="row">
                 <div class="col-md-12">
                     <div id="profilePicture" style="overflow: hidden;">
-                        <img [src]="userData.avatar ? 'data:image/png;base64,' + userData.avatar : './../../assets/img/default-avatar.png'"
+                        <img [src]="primaryUserData.avatar ? 'data:image/png;base64,' + primaryUserData.avatar : './../../assets/img/default-avatar.png'"
                             width="100" height="100">
                     </div>
-                    <span style="color: white;">{{userData.userName}}</span>
+                    <span style="color: white;">{{primaryUserData.userName}}</span>
                 </div>
             </div>
             <hr color="grey">
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 0 }"
-                (click)="sidePanelSelection = 0; sidenav.toggle()">
+                (click)="sidePanelSelection = 0; sidenav.toggle()" [routerLink]="['/home/dashboard']">
                 <div class="col-md-12">
                     <span>Dashboard</span>
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 1 }"
-                (click)="sidePanelSelection = 1; sidenav.toggle()">
+                (click)="sidePanelSelection = 1; sidenav.toggle()" [routerLink]="['/home/profile']">
                 <div class="col-md-12">
                     <span>Profile</span>
                 </div>
@@ -30,19 +30,19 @@
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 3 }"
-                (click)="sidePanelSelection = 3; sidenav.toggle()">
+                (click)="sidePanelSelection = 3; sidenav.toggle()" [routerLink]="['/home/qasection']">
                 <div class="col-md-12">
                     <span>Q&A Section</span>
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 4 }"
-                (click)="sidePanelSelection = 4; sidenav.toggle()">
+                (click)="sidePanelSelection = 4; sidenav.toggle()" [routerLink]="['/home/discussion']">
                 <div class="col-md-12">
                     <span>Discussion Section</span>
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 5 }"
-                *ngIf="userData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()">
+                *ngIf="primaryUserData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()" [routerLink]="['/home/admin']">
                 <div class="col-md-12">
                     <span>Admin Controller</span>
                 </div>
@@ -67,11 +67,7 @@
             <button class="toggleIcon" mat-button (click)="sidenav.toggle()">
                 <img src="./../../assets/img/stackcl_logo.jpg" width="100" height="40">
             </button>
-            <app-dashboard *ngIf="sidePanelSelection == 0"></app-dashboard>
-            <app-user-profile [userData]="userData" *ngIf="sidePanelSelection == 1"></app-user-profile>
-            <app-qa-section *ngIf="sidePanelSelection == 3"></app-qa-section>
-            <app-discussion-section *ngIf="sidePanelSelection == 4"></app-discussion-section>
-            <app-admin-controller *ngIf="sidePanelSelection == 5"></app-admin-controller>
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

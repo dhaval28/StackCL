@@ -4,7 +4,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { CommonConstants } from './../common-constants';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { HttpHeaders } from '@angular/common/http';
-import { DataService } from './../services/data-share.service';
+import { PUserDataService } from '../services/primary-user-data.service';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -39,7 +39,7 @@ export class LoginPageComponent implements OnInit {
   public commentInput = new FormControl('', [Validators.required]);
 
   public feedbackForm: FormGroup;
-  constructor(public commonService: CommonService, public formBuilder: FormBuilder, private router: Router, public _dataService: DataService,
+  constructor(public commonService: CommonService, public formBuilder: FormBuilder, private router: Router, public _pUserDataService: PUserDataService,
     public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -51,8 +51,8 @@ export class LoginPageComponent implements OnInit {
         })
       };
       this.commonService.setData(CommonConstants.loginByToken, {}).subscribe((response) => {
-        this._dataService.setJSON(response.user);
-        this.router.navigate(['/home']);
+        this._pUserDataService.setJSON(response.user);
+        this.router.navigate(['/home/dashboard']);
       });
     }
   }

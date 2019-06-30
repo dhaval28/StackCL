@@ -4,7 +4,7 @@ import { CommonService } from '../../services/common.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword, validateUserName } from './../validations/validations';
-import { DataService } from './../../services/data-share.service';
+import { PUserDataService } from '../../services/primary-user-data.service';
 import { HttpHeaders } from '@angular/common/http';
 import { UsernameValidator } from './../validations/username'
 
@@ -15,7 +15,7 @@ import { UsernameValidator } from './../validations/username'
 })
 export class SignupComponent implements OnInit {
 
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _pUserDataService: PUserDataService,
     public userNameValidator: UsernameValidator) { }
 
   public email = new FormControl('', [Validators.required, Validators.email]);
@@ -51,8 +51,8 @@ export class SignupComponent implements OnInit {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         })
       };
-      this._dataService.setJSON(response.user);
-      this.router.navigate(['/home']);
+      this._pUserDataService.setJSON(response.user);
+      this.router.navigate(['/home/dashboard']);
     },
       err => {
         alert("Something went wrong!");

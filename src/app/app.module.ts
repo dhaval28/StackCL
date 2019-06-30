@@ -18,7 +18,8 @@ import { QASectionComponent } from './home/qa-section/qa-section.component';
 import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { CommonService } from './services/common.service';
-import { DataService } from './services/data-share.service';
+import { PUserDataService } from './services/primary-user-data.service';
+import { SUserDataService } from './services/secondary-user-data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -47,7 +48,7 @@ export function tokenGetter() {
       }
     }), Ng4LoadingSpinnerModule.forRoot()
   ],
-  providers: [CommonService, DataService, AuthenticationService, AuthGuardService, UsernameValidator,
+  providers: [CommonService, PUserDataService,SUserDataService, AuthenticationService, AuthGuardService, UsernameValidator,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })

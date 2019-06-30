@@ -4,6 +4,8 @@ import { CommonConstants } from './../../common-constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { PUserDataService } from './../../services/primary-user-data.service';
+import { SUserDataService } from './../../services/secondary-user-data.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,17 +14,19 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class UserProfileComponent implements OnInit {
 
-  @Input() userData;
+  public userData;
   public userDataToSave;
   setProfilePictureForm: FormGroup;
   httpOptions: Object;
   editProfileFlag: boolean = false;
   profilePictureStatus: string = '';
 
-  constructor(public commonService: CommonService, private http: HttpClient, private formBuilder: FormBuilder, public _loader: Ng4LoadingSpinnerService) {
+  constructor(public commonService: CommonService, private http: HttpClient, private formBuilder: FormBuilder, public _loader: Ng4LoadingSpinnerService,
+    public _pUserDataService: PUserDataService, public _sUserDataService: SUserDataService) {
 
   }
   ngOnInit() {
+    this.userData = this._pUserDataService.getJSON();
     this.setProfilePictureForm = this.formBuilder.group({
       avatar: ['']
     });

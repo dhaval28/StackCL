@@ -48,6 +48,10 @@ router.post('/loginByToken', auth, async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     req.body.userRole = 'ADMIN';
+    req.body.questionsAsked = 0;
+    req.body.followersCnt = 0;
+    req.body.followingCnt = 0;
+
     const user = new User(req.body);
 
     try {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { CommonService } from './common.service';
-import { DataService } from './data-share.service';
+import { PUserDataService } from './primary-user-data.service';
 import { CommonConstants } from './../common-constants';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -10,7 +10,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Injectable()
 export class AuthenticationService {
     httpOptions: Object;
-    constructor(public commonService: CommonService, public _dataService: DataService, public router: Router, public jwtHelper: JwtHelperService,
+    constructor(public commonService: CommonService, public _pUserDataService: PUserDataService, public router: Router, public jwtHelper: JwtHelperService,
         public _loader: Ng4LoadingSpinnerService) {
         this.httpOptions = {
             headers: new HttpHeaders({
@@ -33,7 +33,7 @@ export class AuthenticationService {
 
     logout() {
         localStorage.removeItem('token');
-        this._dataService.setJSON({});
+        this._pUserDataService.setJSON({});
         this.router.navigate(['/login']);
     }
 

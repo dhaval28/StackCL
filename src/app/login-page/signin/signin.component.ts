@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
-import { DataService } from './../../services/data-share.service';
+import { PUserDataService } from '../../services/primary-user-data.service';
 import { CommonConstants } from './../../common-constants';
 import { Router } from '@angular/router';
 import { validatePassword } from './../validations/validations';
@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _dataService: DataService,
+  constructor(public formBuilder: FormBuilder, public commonService: CommonService, private router: Router, public _pUserDataService: PUserDataService,
     public _loader: Ng4LoadingSpinnerService, public _snackBar: MatSnackBar) { }
 
   @Output() forgotPasswordClicked = new EventEmitter();
@@ -49,8 +49,8 @@ export class SigninComponent implements OnInit {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         })
       };
-      this._dataService.setJSON(response.user);
-      this.router.navigate(['/home']);
+      this._pUserDataService.setJSON(response.user);
+      this.router.navigate(['/home/dashboard']);
     },
       err => {
         this._loader.hide();
