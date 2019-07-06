@@ -40,18 +40,26 @@
                     </div>
                 </div>
                 <div class="col-md-8" style="text-align: left;">
-                    <h6  *ngIf="!editProfileFlag" class="editProfileButton" (click)="onClickEditProfile()"><i class="fa fa-edit"></i> Edit Profile
-                    </h6>
+                    <button *ngIf="!editProfileFlag && profileOwner" id="editProfileButton"
+                        (click)="onClickEditProfile()" mat-stroked-button><i class="fa fa-edit"></i> Edit
+                        Profile</button>
+                    <button *ngIf="!editProfileFlag && !profileOwner" id="followUserButton"
+                        (click)="onClickFollowUser()" mat-flat-button color="primary"><i class="fa fa-user-plus"></i>
+                        Follow</button>
                     <h2>{{userData.firstName}} {{userData.lastName}}</h2>
                     <strong style="color: blue">@{{userData.userName}}</strong><br><br>
                     <mat-form-field style="width: inherit;" *ngIf="editProfileFlag">
-                        <textarea matInput placeholder="User Summary" [(ngModel)]="userDataToSave.userSummary"></textarea>
+                        <textarea matInput placeholder="User Summary"
+                            [(ngModel)]="userDataToSave.userSummary"></textarea>
                     </mat-form-field>
                     <span *ngIf="!editProfileFlag">{{userData.userSummary}}</span>
                     <br><br>
                     <div class="row" style="text-align: center">
                         <div class="col-md-3">
                             <span>Questions Asked</span><br><strong>{{userData.questionsAsked}}</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Questions Answered</span><br><strong>{{userData.questionsAnswered}}</strong>
                         </div>
                         <div class="col-md-3">
                             <span>Followers</span><br><strong>{{userData.followersCnt}}</strong>

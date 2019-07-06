@@ -1,2 +1,10 @@
-1. Encrypted Requests and Response (Hash)
-2. Moving loginByToken to app component
+- Change password
+- Using Behavior Subject for primary user data sharing between home component and user profile component
+- Follow-Unfollow user
+- Select appropriate option in side panel as per the current URL
+- Wild card request handler for heroku issue (Cannot get /home)
+- Login Page data processing before save (trims, capitalize, validate)
+- CSS changes for responsive
+
+- Encrypted Requests and Response (Hash)
+- Moving loginByToken to app component

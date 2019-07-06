@@ -96,6 +96,22 @@ router.post('/feedback', async (req, res) => {
     }
 });
 
+router.get('/getUserProfile/:userName', auth, async (req, res) => {
+
+    try {
+        const user = await User.findOne({ userName: req.params.userName });
+        if (!user) {
+            res.status(200).send({ error: 'USER_NOT_FOUND' });
+        }
+        let profileOwner = user.userName !== req.user.userName ? false : true;
+        res.status(200).send({ user: user.getPublicProfile(), profileOwner });
+
+    } catch (e) {
+        res.status(500).send(e);
+    }
+
+});
+
 router.post('/forgotPassword', async (req, res) => {
     let result = '';        //stores a random string as a new password
     let chars = '0123456789';

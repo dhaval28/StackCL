@@ -9,6 +9,7 @@ export const CommonConstants = {
     forgotPasswordURL: hostName + '/forgotPassword',
     removeProfilePicture: hostName + '/removeProfilePicture',
     setProfilePicture: hostName + '/setProfilePicture',
+    getUserProfile: hostName + '/getUserProfile',
     feedbackURL: hostName + '/feedback',
     getDbInfo: hostName + '/dbInfo',
     checkUserNameAvailability: hostName + '/checkUserNameAvailability',

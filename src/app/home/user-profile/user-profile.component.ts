@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { PUserDataService } from './../../services/primary-user-data.service';
 import { SUserDataService } from './../../services/secondary-user-data.service';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +16,9 @@ import { SUserDataService } from './../../services/secondary-user-data.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  public userData;
+  public urlUserName;
+  public profileOwner: boolean = true;
+  public userData = {};
   public userDataToSave;
   setProfilePictureForm: FormGroup;
   httpOptions: Object;
@@ -22,11 +26,25 @@ export class UserProfileComponent implements OnInit {
   profilePictureStatus: string = '';
 
   constructor(public commonService: CommonService, private http: HttpClient, private formBuilder: FormBuilder, public _loader: Ng4LoadingSpinnerService,
-    public _pUserDataService: PUserDataService, public _sUserDataService: SUserDataService) {
+    public _pUserDataService: PUserDataService, public _sUserDataService: SUserDataService, private route: ActivatedRoute) {
 
   }
   ngOnInit() {
-    this.userData = this._pUserDataService.getJSON();
+    this.route.params.subscribe((urlObj) => {
+      this.urlUserName = urlObj.userName;
+    })
+
+    this.profileOwner = false;
+    let url = CommonConstants.getUserProfile + '/' + this.urlUserName;
+    this.commonService.getData(url).subscribe((response) => {
+      this.profileOwner = response.profileOwner;
+      this.userData = response.user;
+      if (!this.profileOwner)
+        this._sUserDataService.setJSON(this.userData);
+      else
+        this._pUserDataService.setJSON(this.userData);
+    })
+
     this.setProfilePictureForm = this.formBuilder.group({
       avatar: ['']
     });
@@ -90,6 +108,10 @@ export class UserProfileComponent implements OnInit {
         alert('Oops! Something went wrong! Cannot change Profile Picture.');
       });
     });
+  }
+
+  onClickFollowUser() {
+
   }
 
 }

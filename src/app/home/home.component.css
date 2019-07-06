@@ -52,12 +52,7 @@
     color: greenyellow;
 }
 
-.logoutButtonDiv {
-    bottom: 60px;
-    position: fixed;
-}
-
-.logoutSessionsButtonDiv {
-    bottom: 20px;
-    position: fixed;
+.logoutButtonDiv, .logoutSessionsButtonDiv, .changePasswordDiv {
+    text-align: left;
+    padding-bottom: 5px;
 }
