@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         })
       };
-      this._pUserDataService.setJSON(response.user);
+      this._pUserDataService.updateUser(response.user);
       this.router.navigate(['/home/dashboard']);
     },
       err => {

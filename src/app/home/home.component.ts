@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   constructor(public _pUserDataService: PUserDataService, public commonService: CommonService, public authService: AuthenticationService,
     public _loader: Ng4LoadingSpinnerService, public router: Router) {
-    this.primaryUserData = _pUserDataService.getJSON();
+    this._pUserDataService.primaryUserObservable.subscribe((userData) => this.primaryUserData = userData);
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       this.commonService.setData(CommonConstants.loginByToken, {}).subscribe((response) => {
         this._loader.hide();
         this.primaryUserData = response.user;
-        this._pUserDataService.setJSON(response.user);
+        this._pUserDataService.updateUser(response.user);
       });
     }
   }
@@ -48,13 +48,13 @@ export class HomeComponent implements OnInit {
     this.commonService.setData(CommonConstants.logoutSessionsURL, {}).subscribe((response) => {
       this._loader.hide();
       localStorage.removeItem('token');
-      this._pUserDataService.setJSON({});
+      this._pUserDataService.updateUser({});
       this.router.navigate(['/login']);
     });
   }
 
   onClickChangePassword() {
-    
+
   }
 
 }

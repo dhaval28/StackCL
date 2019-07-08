@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject'
 
 @Injectable()
 export class PUserDataService {
 
-    private data = {};
+    private primaryUser = new BehaviorSubject<object>({});
+    primaryUserObservable = this.primaryUser.asObservable();
 
-    setJSON(value) {
-        this.data = value;
-    }
+    constructor() {}
 
-    getJSON() {
-        return this.data;
+    updateUser(updatedUser) {
+        this.primaryUser.next(updatedUser);
     }
 }  

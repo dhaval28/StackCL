@@ -5,6 +5,13 @@
       <div class="row" style="height: -webkit-fill-available;">
         <div class="col-md-6">
           <h4 *ngIf="isSignIn && !showForgotPassword" [@slideInAnimation]>Login to your Account</h4>
+          <div *ngIf="isSignIn && !showForgotPassword" [@slideInAnimation] style="border: 1px dotted blue">
+            <span>
+              Test Credentials: <br>
+              Username : buzzzz <br>
+              Password : 12345678
+            </span>
+          </div>
           <div *ngIf="!isSignIn || showForgotPassword" [@slideInAnimation]>
             <h4 *ngIf="!isSignIn && !showForgotPassword">Create an Account</h4>
             <h4 *ngIf="showForgotPassword">Reset your Password</h4>

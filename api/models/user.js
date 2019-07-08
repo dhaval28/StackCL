@@ -31,6 +31,18 @@ const userSchema = new mongoose.Schema({
     userSummary: {
         type: String
     },
+    questionsAsked: {
+        type: Number
+    },
+    questionsAnswered: {
+        type: Number
+    },
+    followersCnt: {
+        type: Number
+    },
+    followingCnt: {
+        type: Number
+    },
     tokens: [{
         token: {
             type: String,

@@ -33,7 +33,7 @@ export class AuthenticationService {
 
     logout() {
         localStorage.removeItem('token');
-        this._pUserDataService.setJSON({});
+        this._pUserDataService.updateUser({});
         this.router.navigate(['/login']);
     }
 

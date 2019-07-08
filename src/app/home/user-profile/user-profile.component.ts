@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(public commonService: CommonService, private http: HttpClient, private formBuilder: FormBuilder, public _loader: Ng4LoadingSpinnerService,
     public _pUserDataService: PUserDataService, public _sUserDataService: SUserDataService, private route: ActivatedRoute) {
-
+    this._pUserDataService.primaryUserObservable.subscribe((userData) => this.userData = userData);
   }
   ngOnInit() {
     this.route.params.subscribe((urlObj) => {
@@ -42,7 +42,7 @@ export class UserProfileComponent implements OnInit {
       if (!this.profileOwner)
         this._sUserDataService.setJSON(this.userData);
       else
-        this._pUserDataService.setJSON(this.userData);
+        this._pUserDataService.updateUser(this.userData);
     })
 
     this.setProfilePictureForm = this.formBuilder.group({
@@ -87,7 +87,7 @@ export class UserProfileComponent implements OnInit {
     this._loader.show();
     this.commonService.setData(CommonConstants.updateProfile, this.userDataToSave).subscribe((response) => {
       this._loader.hide();
-      this.userData = response;
+      this._pUserDataService.updateUser(response);
     }, err => {
       console.log(err);
     });
