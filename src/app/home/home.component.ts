@@ -8,6 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
 import { validatePassword, checkPasswords } from './../login-page/validations/validations';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +25,10 @@ export class HomeComponent implements OnInit {
   public changePasswordForm: FormGroup = this.formBuilder.group({
     newPassword: this.newPassword,
     confirmPassword: this.confirmPassword,
-  }, {validator: checkPasswords});
+  }, { validator: checkPasswords });
 
   constructor(public formBuilder: FormBuilder, public _pUserDataService: PUserDataService, public commonService: CommonService, public authService: AuthenticationService,
-    public _loader: Ng4LoadingSpinnerService, public router: Router) {
+    public _loader: Ng4LoadingSpinnerService, public router: Router, public _snackBar: MatSnackBar) {
     this._pUserDataService.primaryUserObservable.subscribe((userData) => this.primaryUserData = userData);
   }
 
@@ -71,7 +72,22 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    document.getElementById('changePasswordModal').click();
+    this._loader.show();
+    this.commonService.setData(CommonConstants.changePassword, this.changePasswordForm.value).subscribe((response) => {
+      this._loader.hide();
+      document.getElementById('changePasswordModal').click();
+      if (response) {
+        this._snackBar.open('Password Changed Successfully', '', {
+          duration: 1500,
+        });
+      }
+      else {
+        this._snackBar.open('Something went wrong. Cannot change password', '', {
+          duration: 1500,
+        });
+      }
+    });
+
   }
 
 }

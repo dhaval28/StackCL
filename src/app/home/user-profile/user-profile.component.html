@@ -46,6 +46,9 @@
                     <button *ngIf="!editProfileFlag && !profileOwner" id="followUserButton"
                         (click)="onClickFollowUser()" mat-flat-button color="primary"><i class="fa fa-user-plus"></i>
                         Follow</button>
+                    <button *ngIf="!editProfileFlag && !profileOwner" id="followUserButton"
+                        (click)="onClickFollowUser()" mat-flat-button color="primary"><i class="fa fa-user-plus"></i>
+                        Follow</button>
                     <h2>{{userData.firstName}} {{userData.lastName}}</h2>
                     <strong style="color: blue">@{{userData.userName}}</strong><br><br>
                     <mat-form-field style="width: inherit;" *ngIf="editProfileFlag">
@@ -80,4 +83,34 @@
             </div>
         </mat-card-content>
     </mat-card>
+
+    <!-- Unfollow Confirmation Modal -->
+    <div class="modal fade" id="unfollowUserModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Unfollow {{userData.userName}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <span>Are you sure you want to un-follow this user?</span>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button mat-raised-button color="accent" (click)="onClickChangePasswordConfirm()">
+                        Un-follow
+                    </button>
+                    <button mat-raised-button data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

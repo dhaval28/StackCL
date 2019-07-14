@@ -97,7 +97,7 @@ router.post('/feedback', async (req, res) => {
     }
 });
 
-router.get('/getUserProfile/:userName', auth, async (req, res) => {
+router.get('/home/profile/:userName', auth, async (req, res) => {
 
     try {
         const user = await User.findOne({ userName: req.params.userName });
@@ -181,6 +181,19 @@ router.post('/checkUserNameAvailability', async (req, res) => {
     }
     catch (e) {
         res.status(500).send(e);
+    }
+
+});
+
+router.post('/changePassword', auth, async (req, res) => {
+
+    try {
+        req.user.password = req.body.newPassword;
+
+        await req.user.save();
+        res.status(201).send(true);
+    } catch (e) {
+        res.status(200).send(false);
     }
 
 });

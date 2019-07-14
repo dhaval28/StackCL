@@ -9,7 +9,7 @@ export const CommonConstants = {
     forgotPasswordURL: hostName + '/forgotPassword',
     removeProfilePicture: hostName + '/removeProfilePicture',
     setProfilePicture: hostName + '/setProfilePicture',
-    getUserProfile: hostName + '/getUserProfile',
+    getUserProfile: hostName + '/home/profile',
     feedbackURL: hostName + '/feedback',
     getDbInfo: hostName + '/dbInfo',
     checkUserNameAvailability: hostName + '/checkUserNameAvailability',
@@ -17,5 +17,6 @@ export const CommonConstants = {
     logoutURL: hostName + '/logout',
     logoutSessionsURL: hostName + '/logoutAllSessions',
     deleteUserURL: hostName + '/deleteUser',
-    updateProfile: hostName + '/updateProfile'
+    updateProfile: hostName + '/updateProfile',
+    changePassword: hostName + '/changePassword'
 };

@@ -1,6 +1,6 @@
-- Change password (in-progress)
+- Change password (done)
 - Adding reCAPTCHA
-- Follow-Unfollow user
+- Follow-Unfollow user (in-progress)
 - Select appropriate option in side panel as per the current URL
 - Wild card request handler for heroku issue (Cannot get /home)
 - Login Page data processing before save (trims, capitalize, validate)
