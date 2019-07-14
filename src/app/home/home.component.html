@@ -18,7 +18,8 @@
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 1 }"
-                (click)="sidePanelSelection = 1; sidenav.toggle()" [routerLink]="['/home/profile', primaryUserData.userName]">
+                (click)="sidePanelSelection = 1; sidenav.toggle()"
+                [routerLink]="['/home/profile', primaryUserData.userName]">
                 <div class="col-md-12">
                     <span>Profile</span>
                 </div>
@@ -42,7 +43,8 @@
                 </div>
             </div>
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 5 }"
-                *ngIf="primaryUserData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()" [routerLink]="['/home/admin']">
+                *ngIf="primaryUserData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()"
+                [routerLink]="['/home/admin']">
                 <div class="col-md-12">
                     <span>Admin Controller</span>
                 </div>
@@ -50,12 +52,15 @@
 
             <div class="row changePasswordDiv" style="margin-top: 20px;">
                 <div class="col-md-12">
-                    <button mat-flat-button style="background-color: greenyellow" (click)="onClickChangePassword()">Change Password</button>
+                    <button mat-flat-button id="changePasswordButton" style="background-color: greenyellow"
+                        (click)="sidenav.toggle(); onClickChangePassword()" data-toggle="modal"
+                        data-target="#changePasswordModal">Change Password</button>
                 </div>
             </div>
             <div class="row logoutButtonDiv">
                 <div class="col-md-12">
-                    <button mat-flat-button style="background-color: greenyellow" (click)="onClickLogout()">Logout</button>
+                    <button mat-flat-button style="background-color: greenyellow"
+                        (click)="onClickLogout()">Logout</button>
                 </div>
             </div>
             <div class="row logoutSessionsButtonDiv">
@@ -74,4 +79,57 @@
             <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <span>Please set a New Password (should be at least 8 characters long)</span>
+                    <form [formGroup]="changePasswordForm">
+                        <mat-form-field style="width: 70%">
+                            <input matInput placeholder="New Password" type="password" [formControl]="newPassword"
+                                autocomplete="off" required>
+                            <mat-error *ngIf="newPassword.errors?.required">Required</mat-error>
+                            <mat-error *ngIf="newPassword.invalid && newPassword.errors?.invalidPass">Should be at least
+                                8
+                                characters long</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <div>
+                            <mat-form-field style="width: 70%">
+                                <input matInput placeholder="Confirm Password" type="password"
+                                    [formControl]="confirmPassword" autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <small *ngIf="changePasswordForm.errors?.notSame" style="color: red"><i
+                                    class="fa fa-exclamation-triangle" aria-hidden="true"></i> Both the passwords should
+                                match
+                            </small>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button mat-raised-button color="primary" (click)="onClickChangePasswordConfirm()">
+                        Change Password
+                    </button>
+                    <button mat-raised-button data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

@@ -6,6 +6,8 @@ import { CommonConstants } from './../common-constants';
 import { HttpHeaders } from '@angular/common/http';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router } from '@angular/router';
+import { validatePassword, checkPasswords } from './../login-page/validations/validations';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,14 @@ export class HomeComponent implements OnInit {
   public primaryUserData: any;
   public sidePanelSelection: number = 0;
 
-  constructor(public _pUserDataService: PUserDataService, public commonService: CommonService, public authService: AuthenticationService,
+  public newPassword = new FormControl('', [Validators.required, validatePassword]);
+  public confirmPassword = new FormControl('', []);
+  public changePasswordForm: FormGroup = this.formBuilder.group({
+    newPassword: this.newPassword,
+    confirmPassword: this.confirmPassword,
+  }, {validator: checkPasswords});
+
+  constructor(public formBuilder: FormBuilder, public _pUserDataService: PUserDataService, public commonService: CommonService, public authService: AuthenticationService,
     public _loader: Ng4LoadingSpinnerService, public router: Router) {
     this._pUserDataService.primaryUserObservable.subscribe((userData) => this.primaryUserData = userData);
   }
@@ -54,7 +63,15 @@ export class HomeComponent implements OnInit {
   }
 
   onClickChangePassword() {
+    this.changePasswordForm.reset();
+  }
 
+  onClickChangePasswordConfirm() {
+    if (this.changePasswordForm.invalid) {
+      return;
+    }
+
+    document.getElementById('changePasswordModal').click();
   }
 
 }
