@@ -1,5 +1,5 @@
 - Change password (done)
-- Adding reCAPTCHA
+- Adding reCAPTCHA (done, yet to be committed)
 - Follow-Unfollow user (in-progress)
 - Select appropriate option in side panel as per the current URL
 - Wild card request handler for heroku issue (Cannot get /home)
