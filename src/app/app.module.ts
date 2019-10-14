@@ -12,7 +12,6 @@ import { SignupComponent } from './login-page/signup/signup.component';
 import { ForgotPasswordComponent } from './login-page/forgot-password/forgot-password.component';
 import { RatingComponent } from './login-page/rating/rating.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { DiscussionSectionComponent } from './home/discussion-section/discussion-section.component';
 import { QASectionComponent } from './home/qa-section/qa-section.component';
 import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
@@ -27,6 +26,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { UsernameValidator } from './login-page/validations/username';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -36,12 +36,12 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LoginPageComponent, ForgotPasswordComponent, UserProfileComponent,
-    SigninComponent, DashboardComponent, DiscussionSectionComponent, QASectionComponent, AdminControllerComponent,
+    SigninComponent, DiscussionSectionComponent, QASectionComponent, AdminControllerComponent,
     SignupComponent, RatingComponent,
     HomeComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, MaterialModule, AngularFontAwesomeModule,
+    BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, MaterialModule, AngularFontAwesomeModule, RecaptchaModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

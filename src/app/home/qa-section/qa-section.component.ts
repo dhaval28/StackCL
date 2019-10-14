@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class QASectionComponent implements OnInit {
 
   sidePanelFilterIdx = 0;
+  questionsArray = [];
   ngOnInit() {
   }
 

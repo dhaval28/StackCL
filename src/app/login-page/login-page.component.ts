@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit {
       };
       this.commonService.setData(CommonConstants.loginByToken, {}).subscribe((response) => {
         this._pUserDataService.updateUser(response.user);
-        this.router.navigate(['/home/dashboard']);
+        this.router.navigate(['/home/qasection']);
       });
     }
   }

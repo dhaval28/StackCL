@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
         })
       };
       this._pUserDataService.updateUser(response.user);
-      this.router.navigate(['/home/dashboard']);
+      this.router.navigate(['/home/qasection']);
     },
       err => {
         alert("Something went wrong!");

@@ -7,7 +7,6 @@ import { QASectionComponent } from './home/qa-section/qa-section.component';
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { DiscussionSectionComponent } from './home/discussion-section/discussion-section.component';
 import { AdminControllerComponent } from './home/admin-controller/admin-controller.component';
-import { DashboardComponent } from './home/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
