@@ -18,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class HomeComponent implements OnInit {
 
   public primaryUserData: any;
-  public sidePanelSelection: number = 0;
+  public sidePanelSelection: number = 2;
 
   public newPassword = new FormControl('', [Validators.required, validatePassword]);
   public confirmPassword = new FormControl('', []);

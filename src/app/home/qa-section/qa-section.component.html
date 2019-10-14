@@ -2,6 +2,26 @@
     <mat-card class="component-content-card">
         <mat-card-content>
             <h1>Q&A Content</h1>
+            <div class="row">
+                <div class="col-md-3" style="height: 100vh;">
+                    <div style="margin: 15px 0 0 20px">
+                        <mat-chip-list aria-label="Fish selection">
+                            <mat-chip [selected]="sidePanelFilterIdx===0" (click)="sidePanelFilterIdx=0">All Questions
+                            </mat-chip>
+                            <mat-chip [selected]="sidePanelFilterIdx===1" (click)="sidePanelFilterIdx=1">Questions asked
+                                by me</mat-chip>
+                            <mat-chip [selected]="sidePanelFilterIdx===2" (click)="sidePanelFilterIdx=2">Questions
+                                answered by me</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <div class="col-md-6" style="border: 1px solid red; height: 100vh;">
+
+                </div>
+                <div class="col-md-3" style="border: 1px solid red; height: 100vh;">
+
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

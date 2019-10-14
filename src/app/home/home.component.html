@@ -12,38 +12,32 @@
             </div>
             <hr color="grey">
             <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 0 }"
-                (click)="sidePanelSelection = 0; sidenav.toggle()" [routerLink]="['/home/dashboard']">
-                <div class="col-md-12">
-                    <span>Dashboard</span>
-                </div>
-            </div>
-            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 1 }"
-                (click)="sidePanelSelection = 1; sidenav.toggle()"
+                (click)="sidePanelSelection = 0; sidenav.toggle()"
                 [routerLink]="['/home/profile', primaryUserData.userName]">
                 <div class="col-md-12">
                     <span>Profile</span>
                 </div>
             </div>
-            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 2 }"
-                (click)="sidePanelSelection = 2; sidenav.toggle()">
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 1 }"
+                (click)="sidePanelSelection = 1; sidenav.toggle()">
                 <div class="col-md-12">
                     <span>Notifications</span>
                 </div>
             </div>
-            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 3 }"
-                (click)="sidePanelSelection = 3; sidenav.toggle()" [routerLink]="['/home/qasection']">
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 2 }"
+                (click)="sidePanelSelection = 2; sidenav.toggle()" [routerLink]="['/home/qasection']">
                 <div class="col-md-12">
                     <span>Q&A Section</span>
                 </div>
             </div>
-            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 4 }"
-                (click)="sidePanelSelection = 4; sidenav.toggle()" [routerLink]="['/home/discussion']">
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 3 }"
+                (click)="sidePanelSelection = 3; sidenav.toggle()" [routerLink]="['/home/discussion']">
                 <div class="col-md-12">
                     <span>Discussion Section</span>
                 </div>
             </div>
-            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 5 }"
-                *ngIf="primaryUserData.userRole === 'ADMIN'" (click)="sidePanelSelection = 5; sidenav.toggle()"
+            <div class="row sidepanel-section" [ngClass]="{ 'selectedSection':sidePanelSelection === 4 }"
+                *ngIf="primaryUserData.userRole === 'ADMIN'" (click)="sidePanelSelection = 4; sidenav.toggle()"
                 [routerLink]="['/home/admin']">
                 <div class="col-md-12">
                     <span>Admin Controller</span>

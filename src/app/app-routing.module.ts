@@ -22,10 +22,6 @@ const routes: Routes = [
       component: DiscussionSectionComponent
     },
     {
-      path: 'dashboard',
-      component: DashboardComponent
-    },
-    {
       path: 'profile/:userName',
       component: UserProfileComponent
     },
